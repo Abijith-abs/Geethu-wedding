@@ -66,7 +66,7 @@ export default function StoryTimeline() {
         {/* Timeline */}
         <div style={{ position: "relative", paddingLeft: 0 }}>
           {/* Animated center line */}
-          <div style={{
+          <div className="story-center-line" style={{
             position: "absolute",
             left: "50%",
             top: 0,
@@ -98,6 +98,7 @@ export default function StoryTimeline() {
                 initial={{ opacity: 0, x: isLeft ? -60 : 60 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                className="story-item"
                 style={{
                   display: "flex",
                   justifyContent: isLeft ? "flex-start" : "flex-end",
@@ -106,7 +107,7 @@ export default function StoryTimeline() {
                 }}
               >
                 {/* Card */}
-                <div style={{
+                <div className="story-card" style={{
                   width: "45%",
                   background: "#FFFBF7",
                   border: "1px solid rgba(201,151,44,0.25)",
@@ -151,7 +152,7 @@ export default function StoryTimeline() {
                   </p>
 
                   {/* Connector arrow */}
-                  <div style={{
+                  <div className="story-arrow" style={{
                     position: "absolute",
                     top: "50%",
                     [isLeft ? "right" : "left"]: -10,
@@ -164,7 +165,7 @@ export default function StoryTimeline() {
                 </div>
 
                 {/* Center dot */}
-                <div style={{
+                <div className="story-dot" style={{
                   position: "absolute",
                   left: "50%",
                   top: "50%",

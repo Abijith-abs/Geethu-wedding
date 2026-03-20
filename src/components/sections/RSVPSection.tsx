@@ -186,7 +186,7 @@ export default function RSVPSection() {
                 marginTop: 20, color: "#C9972C",
                 fontFamily: "var(--font-great-vibes, cursive)", fontSize: 22,
               }}>
-                — Meenu & Karthik
+                — Kichu & Dathan
               </p>
             </motion.div>
           ) : (
@@ -203,6 +203,7 @@ export default function RSVPSection() {
                 boxShadow: "0 8px 50px rgba(196,120,106,0.1)",
                 position: "relative",
               }}
+              className="rsvp-form-inner"
               noValidate
             >
               {/* Top gold border */}
@@ -226,7 +227,7 @@ export default function RSVPSection() {
                 </div>
 
                 {/* Email + Phone row */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
+                <div className="rsvp-email-phone" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
                   <div>
                     <label style={labelStyle}>Email *</label>
                     <input

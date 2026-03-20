@@ -47,9 +47,8 @@ export default function GallerySection() {
     setTouchStart(null);
   };
 
-  // 3-column masonry layout weights
-  const columns: (typeof GALLERY_PHOTOS)[] = [[], [], []];
-  GALLERY_PHOTOS.forEach((photo, i) => columns[i % 3].push(photo));
+  // Flat grid — tall/short pattern mirrors original masonry logic
+  const isTall = (i: number) => (Math.floor(i / 3) + i % 3) % 3 === 0;
 
   return (
     <section
@@ -89,76 +88,55 @@ export default function GallerySection() {
           </motion.div>
         </motion.div>
 
-        {/* Masonry Grid */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: 12,
-        }}>
-          {columns.map((col, ci) => (
-            <div key={ci} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {col.map((photo, pi) => {
-                const globalIndex = ci + pi * 3;
-                const tall = (pi + ci) % 3 === 0;
-                return (
-                  <motion.div
-                    key={photo.id}
-                    className="gallery-item"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.7, delay: (ci * 0.08) + (pi * 0.05), ease: [0.16, 1, 0.3, 1] }}
-                    style={{
-                      position: "relative",
-                      height: tall ? 340 : 220,
-                      borderRadius: 4,
-                      overflow: "hidden",
-                      cursor: "pointer",
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.10)",
-                    }}
-                    onClick={() => openLightbox(globalIndex)}
-                    whileHover={{ scale: 1.02 }}
-                  >
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      style={{ objectFit: "cover" }}
-                      loading="lazy"
-                    />
-                    <div className="gallery-overlay" style={{
-                      position: "absolute", inset: 0,
-                      background: "linear-gradient(to top, rgba(158,90,78,0.7) 0%, transparent 50%)",
-                      opacity: 0, transition: "opacity 0.3s",
-                      display: "flex", flexDirection: "column",
-                      justifyContent: "flex-end", padding: 14,
-                    }}>
-                      <span style={{
-                        fontFamily: "var(--font-great-vibes, cursive)",
-                        fontSize: 18, color: "#C9972C",
-                      }}>{photo.alt}</span>
-                      <span style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginTop: 2 }}>
-                        {photo.caption}
-                      </span>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+        {/* Masonry Grid — flat CSS grid, each photo its own cell */}
+        <div className="gallery-masonry">
+          {GALLERY_PHOTOS.map((photo, i) => (
+            <motion.div
+              key={photo.id}
+              className={`gallery-item${isTall(i) ? " gallery-item--tall" : ""}`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                position: "relative",
+                borderRadius: 4,
+                overflow: "hidden",
+                cursor: "pointer",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.10)",
+              }}
+              onClick={() => openLightbox(i)}
+              whileHover={{ scale: 1.02 }}
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                sizes="(max-width: 380px) 100vw, (max-width: 640px) 50vw, 33vw"
+                style={{ objectFit: "cover" }}
+                loading="lazy"
+              />
+              <div className="gallery-overlay" style={{
+                position: "absolute", inset: 0,
+                background: "linear-gradient(to top, rgba(158,90,78,0.7) 0%, transparent 50%)",
+                opacity: 0, transition: "opacity 0.3s",
+                display: "flex", flexDirection: "column",
+                justifyContent: "flex-end", padding: 14,
+              }}>
+                <span style={{
+                  fontFamily: "var(--font-great-vibes, cursive)",
+                  fontSize: 18, color: "#C9972C",
+                }}>{photo.alt}</span>
+                <span style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginTop: 2 }}>
+                  {photo.caption}
+                </span>
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Mobile single-column override */}
-        <style>{`
-          @media (max-width: 600px) {
-            .gallery-masonry { grid-template-columns: 1fr !important; }
-          }
-          @media (max-width: 900px) {
-            .gallery-masonry { grid-template-columns: repeat(2, 1fr) !important; }
-          }
-          .gallery-item:hover .gallery-overlay { opacity: 1 !important; }
-        `}</style>
+        {/* Gallery hover CSS */}
+        <style>{`.gallery-item:hover .gallery-overlay { opacity: 1 !important; }`}</style>
       </div>
 
       {/* Lightbox */}

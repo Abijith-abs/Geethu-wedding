@@ -378,3 +378,104 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--cream); }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--gold), var(--maroon)); border-radius: 3px; }
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE / TABLET / DESKTOP
+═══════════════════════════════════════════════════════ */
+
+/* ── Gallery: flat CSS Grid masonry ─────────────────── */
+.gallery-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 220px;
+  grid-auto-flow: dense;
+  gap: 12px;
+}
+.gallery-item--tall {
+  grid-row: span 2;
+}
+@media (max-width: 640px) {
+  .gallery-masonry {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
+    gap: 8px;
+  }
+}
+@media (max-width: 380px) {
+  .gallery-masonry {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 240px;
+  }
+  .gallery-item--tall { grid-row: span 1; }
+}
+
+/* ── Story timeline: center-line → left-rail on mobile ── */
+.story-center-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(201,151,44,0.1); transform: translateX(-50%); }
+.story-item { display: flex; position: relative; margin-bottom: 60px; }
+.story-card { width: 45%; background: #FFFBF7; border: 1px solid rgba(201,151,44,0.25); border-radius: 4px; padding: 24px 28px; position: relative; box-shadow: 0 4px 30px rgba(196,120,106,0.06); transition: box-shadow 0.3s, transform 0.3s; }
+.story-dot { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 40px; height: 40px; background: #FFFBF7; border: 2px solid #C9972C; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; z-index: 2; box-shadow: 0 0 0 4px rgba(201,151,44,0.15); }
+@media (max-width: 620px) {
+  .story-center-line { left: 22px; transform: none; }
+  .story-item { justify-content: flex-end !important; }
+  .story-card { width: calc(100% - 56px) !important; }
+  .story-dot { left: 22px !important; transform: translateY(-50%) !important; }
+  .story-arrow { display: none !important; }
+}
+
+/* ── RSVP form: 2-col → 1-col, reduce padding on mobile ── */
+.rsvp-email-phone { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.rsvp-form-inner { padding: 48px 40px !important; }
+@media (max-width: 600px) {
+  .rsvp-email-phone { grid-template-columns: 1fr !important; }
+  .rsvp-form-inner { padding: 32px 20px !important; }
+}
+
+/* ── Couple section: gap reduction on mobile ─────────── */
+.couple-flex { display: flex; gap: 40px; align-items: stretch; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .couple-flex { gap: 20px; }
+  .couple-connector { display: none !important; }
+}
+
+/* ── Event cards: responsive width + height on mobile ── */
+@media (max-width: 600px) {
+  .event-card { max-width: 100% !important; height: 490px !important; }
+  .event-card-back { overflow-y: auto !important; -webkit-overflow-scrolling: touch !important; padding: 20px 18px !important; }
+}
+@media (max-width: 380px) {
+  .event-card { height: 530px !important; }
+}
+
+/* ── General section padding reduction on mobile ─────── */
+@media (max-width: 640px) {
+  .section-pad { padding-top: 70px !important; padding-bottom: 70px !important; }
+  #nav { padding-left: 20px !important; padding-right: 20px !important; }
+  #nav.nav-scrolled { padding-left: 20px !important; padding-right: 20px !important; }
+}
+
+/* ── Preloader: center rings on all viewports ────────── */
+#preloader > .pre-ring-outer,
+#preloader > .pre-ring-inner,
+#preloader > svg.pre-ring-dots {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#preloader > div[style*="flexDirection"] {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 100%;
+}
+
+/* ── Venue: map always full-width on narrow screens ───── */
+@media (max-width: 520px) {
+  .venue-map-wrap { flex: 1 1 100% !important; }
+}
+
+/* ── Footer: tighten on mobile ───────────────────────── */
+@media (max-width: 640px) {
+  footer { padding: 60px 20px 32px !important; }
+}

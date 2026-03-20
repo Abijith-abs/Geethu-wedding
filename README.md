@@ -1,4 +1,4 @@
-﻿# Meenu Weds Karthik 💍
+﻿# Kichu Weds Dathan 💍
 
 A cinematic South Indian wedding invitation website built with Next.js 16, Framer Motion, and Tailwind CSS v4.
 

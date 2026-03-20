@@ -68,7 +68,7 @@ export default function Footer() {
             margin: "0 0 8px",
           }}
         >
-          Meenu &amp; Karthik
+          Kichu &amp; Dathan
         </motion.h2>
 
         {/* Hashtag */}
@@ -162,7 +162,7 @@ export default function Footer() {
           color: "rgba(201,151,44,0.7)",
           marginBottom: 8,
         }}>
-          Made with love by the families of Meenu &amp; Karthik
+          Made with love by the families of Kichu &amp; Dathan
         </p>
 
         <p style={{

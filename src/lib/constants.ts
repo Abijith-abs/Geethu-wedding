@@ -4,29 +4,29 @@
 
 export const WEDDING = {
   bride: {
-    firstName: "Meenakshi",
-    lastName: "Nair",
+    firstName: "Aswani",
+    lastName: "K S",
     tamilName: "കിച്ചു",
     nickname: "Kichu",
-    nakshatram: "Rohini",
-    rashi: "Vrishabha (Taurus)",
+    nakshatram: "Thiruvonam",
+    rashi: "(Libra)",
     bio: "A free-spirited soul with a love for Mohiniyattam, jasmine flowers, and long conversations over Kerala chai. She fills every room with warmth.",
-    photo: "/gallery/photo-1.jpg",
+    photo: "/gallery/photo-5.jpg",
   },
   groom: {
-    firstName: "Karthikeyan",
-    lastName: "Menon",
+    firstName: "Dathan",
+    lastName: "",
     tamilName: "ധത്തൻ",
-    nickname: "Dhathan",
+    nickname: "Dathan",
     nakshatram: "Krittika",
     rashi: "Mesha (Aries)",
     bio: "A devoted engineer with a passion for Kerala temples, backwater voyages, and perfectly brewed black tea. He believes every problem has an elegant solution — including falling in love.",
-    photo: "/gallery/photo-5.jpg",
+    photo: "/gallery/photo-12.jpg",
   },
   parents: {
     bride: {
-      father: "Mr. N. Krishnan Nair",
-      mother: "Mrs. N. Radhamani",
+      father: "Mr. Suresh",
+      mother: "Mrs. Jintha",
     },
     groom: {
       father: "Mr. T. Gopakumar Menon",
@@ -38,7 +38,7 @@ export const WEDDING = {
     dateISO: "2027-02-14T09:15:00",
     muhurthamStart: "9:15 AM",
     muhurthamEnd: "10:30 AM",
-    hashtag: "#MeenuWedsKarthik",
+    hashtag: "#KichuWedsDathan",
     venue: {
       name: "Gokulam Convention Centre",
       address: "Gokulam Convention Centre, Marine Drive Road, Ernakulam, Kerala 682011",
@@ -190,7 +190,7 @@ const GALLERY_CAPTIONS = [
 export const GALLERY_PHOTOS = Array.from({ length: 15 }, (_, i) => ({
   id: i + 1,
   src: `/gallery/photo-${i + 1}.jpg`,
-  alt: GALLERY_CAPTIONS[i] || `Meenu & Karthik — Photo ${i + 1}`,
+  alt: GALLERY_CAPTIONS[i] || `Kichu & Dathan — Photo ${i + 1}`,
   caption: GALLERY_CAPTIONS[i] || `Photo ${i + 1}`,
 }));
 

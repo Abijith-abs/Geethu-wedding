@@ -40,15 +40,15 @@ const notoSerifMalayalam = Noto_Serif_Malayalam({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://meenu-weds-karthik.vercel.app"),
-  title: "Meenu Weds Karthik | February 14, 2027",
+  metadataBase: new URL("https://kichu-weds-dathan.vercel.app"),
+  title: "Kichu Weds Dathan | February 14, 2027",
   description:
-    "Join us as Meenakshi & Karthikeyan celebrate their sacred union on February 14, 2027 in Ernakulam, Kerala. #MeenuWedsKarthik",
-  keywords: ["wedding", "Kerala wedding", "Meenakshi", "Karthikeyan", "Ernakulam", "Kochi wedding invitation"],
-  authors: [{ name: "Meenakshi & Karthikeyan" }],
+    "Join us as Kichu & Dathan celebrate their sacred union on February 14, 2027 in Ernakulam, Kerala. #KichuWedsDathan",
+  keywords: ["wedding", "Kerala wedding", "Kichu", "Dathan", "Ernakulam", "Kochi wedding invitation"],
+  authors: [{ name: "Kichu & Dathan" }],
   openGraph: {
-    title: "Meenu Weds Karthik 💍 | February 14, 2027",
-    description: "You are cordially invited to the sacred union of Meenakshi & Karthikeyan — February 14, 2027, Ernakulam, Kerala.",
+    title: "Kichu Weds Dathan 💍 | February 14, 2027",
+    description: "You are cordially invited to the sacred union of Kichu & Dathan — February 14, 2027, Ernakulam, Kerala.",
     type: "website",
     locale: "en_IN",
     images: [
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
         url: "/gallery/photo-1.jpg",
         width: 1200,
         height: 630,
-        alt: "Meenu & Karthik Wedding Invitation",
+        alt: "Kichu & Dathan Wedding Invitation",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Meenu Weds Karthik 💍",
+    title: "Kichu Weds Dathan 💍",
     description: "A grand Kerala wedding celebration. February 14, 2027 | Ernakulam, Kerala",
     images: ["/gallery/photo-1.jpg"],
   },

@@ -231,7 +231,7 @@ export default function CoupleSection() {
         </motion.div>
 
         {/* Person cards + center symbol */}
-        <div style={{
+        <div className="couple-flex" style={{
           display: "flex",
           gap: 40,
           alignItems: "stretch",
@@ -245,7 +245,7 @@ export default function CoupleSection() {
           />
 
           {/* Center connector */}
-          <div style={{
+          <div className="couple-connector" style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

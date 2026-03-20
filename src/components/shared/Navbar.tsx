@@ -233,7 +233,7 @@ export default function Navbar() {
         ))}
 
         <div style={{ fontSize: 12, color: "rgba(201,151,44,0.5)", letterSpacing: 4, marginTop: 8 }}>
-          #MeenuWedsKarthik
+          #KichuWedsDathan
         </div>
       </div>
 
