@@ -6,8 +6,8 @@ export const WEDDING = {
   bride: {
     firstName: "Meenakshi",
     lastName: "Nair",
-    tamilName: "മീനാക്ഷി",
-    nickname: "Meenu",
+    tamilName: "കിച്ചു",
+    nickname: "Kichu",
     nakshatram: "Rohini",
     rashi: "Vrishabha (Taurus)",
     bio: "A free-spirited soul with a love for Mohiniyattam, jasmine flowers, and long conversations over Kerala chai. She fills every room with warmth.",
@@ -16,8 +16,8 @@ export const WEDDING = {
   groom: {
     firstName: "Karthikeyan",
     lastName: "Menon",
-    tamilName: "കാർത്തിക്",
-    nickname: "Karthik",
+    tamilName: "ധത്തൻ",
+    nickname: "Dhathan",
     nakshatram: "Krittika",
     rashi: "Mesha (Aries)",
     bio: "A devoted engineer with a passion for Kerala temples, backwater voyages, and perfectly brewed black tea. He believes every problem has an elegant solution — including falling in love.",
@@ -98,7 +98,7 @@ export const EVENTS = [
     venueAddress: "Marine Drive, Ernakulam, Kerala",
     dresscode: "Semi-formal ethnic — Kasavu sarees & Kurtas",
     description: "An evening of classical and folk performances, Thiruvathira dances, and family skits celebrating the couple.",
-    color: "#1E7B6B",
+    color: "#B07B6E",
   },
   {
     id: "vivaha-muhurtham",
@@ -112,7 +112,7 @@ export const EVENTS = [
     venueAddress: "Marine Drive, Ernakulam, Kerala",
     dresscode: "Kasavu saree / Mundu — Traditional Kerala attire",
     description: "The most auspicious moment — the Mala exchange and tying of the sacred Thaali under divine Muhurtham. Witness the union of two souls.",
-    color: "#1B5538",
+    color: "#C4786A",
     isPrimary: true,
   },
   {
@@ -127,7 +127,7 @@ export const EVENTS = [
     venueAddress: "Marine Drive, Ernakulam, Kerala",
     dresscode: "Formal ethnic / Indo-western",
     description: "An elegant evening reception with traditional Kerala Sadhya on banana leaf, blessings, and celebrations with all who love them.",
-    color: "#1A5B8F",
+    color: "#7B5EA7",
   },
 ];
 

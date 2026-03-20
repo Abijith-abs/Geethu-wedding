@@ -81,7 +81,7 @@ export default function RSVPSection() {
       id="rsvp"
       style={{
         padding: "100px 20px",
-        background: "linear-gradient(180deg, #EEF5EE 0%, #F5F3EC 100%)",
+        background: "linear-gradient(180deg, #FFF5EE 0%, #FAF7F3 100%)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -110,7 +110,7 @@ export default function RSVPSection() {
               fontFamily: "var(--font-cormorant, serif)",
               fontSize: "clamp(36px, 6vw, 64px)",
               fontWeight: 300,
-              color: "#0D3D24",
+              color: "#9E5A4E",
             }}
           >
             RSVP
@@ -123,7 +123,7 @@ export default function RSVPSection() {
             }}
           >
             Kindly let us know if you can grace us with your presence.
-            Please respond by <strong style={{ color: "#1B5538" }}>January 31, 2027</strong>.
+            Please respond by <strong style={{ color: "#C4786A" }}>January 31, 2027</strong>.
           </motion.p>
           <motion.div variants={staggerItem}>
             <MandalaDivider />
@@ -149,7 +149,7 @@ export default function RSVPSection() {
                     position: "absolute",
                     width: 10, height: 10,
                     borderRadius: Math.random() > 0.5 ? "50%" : "0",
-                    background: ["#C9972C", "#1B5538", "#E34234", "#FDF8EF"][i % 4],
+                    background: ["#C9972C", "#C4786A", "#E34234", "#FFFBF7"][i % 4],
                   }}
                 />
               ))}
@@ -165,16 +165,16 @@ export default function RSVPSection() {
               animate={{ opacity: 1, scale: 1 }}
               style={{
                 textAlign: "center", padding: "60px 40px",
-                background: "#FDF8EF",
+                background: "#FFFBF7",
                 border: "1px solid rgba(201,151,44,0.4)",
                 borderRadius: 6,
-                boxShadow: "0 8px 50px rgba(19,78,52,0.1)",
+                boxShadow: "0 8px 50px rgba(196,120,106,0.1)",
               }}
             >
               <div style={{ fontSize: 56, marginBottom: 20 }}>🪔</div>
               <h3 style={{
                 fontFamily: "var(--font-great-vibes, cursive)",
-                fontSize: 44, color: "#1B5538", marginBottom: 12,
+                fontSize: 44, color: "#C4786A", marginBottom: 12,
               }}>
                 Thank You!
               </h3>
@@ -196,11 +196,11 @@ export default function RSVPSection() {
               transition={{ duration: 0.7, delay: 0.2 }}
               onSubmit={handleSubmit(onSubmit)}
               style={{
-                background: "#FDF8EF",
+                background: "#FFFBF7",
                 border: "1px solid rgba(201,151,44,0.3)",
                 borderRadius: 6,
                 padding: "48px 40px",
-                boxShadow: "0 8px 50px rgba(19,78,52,0.1)",
+                boxShadow: "0 8px 50px rgba(196,120,106,0.1)",
                 position: "relative",
               }}
               noValidate
@@ -208,7 +208,7 @@ export default function RSVPSection() {
               {/* Top gold border */}
               <div style={{
                 position: "absolute", top: 0, left: 0, right: 0, height: 4,
-                background: "linear-gradient(90deg, #1B5538, #C9972C, #1B5538)",
+                background: "linear-gradient(90deg, #C4786A, #C9972C, #C4786A)",
                 borderRadius: "6px 6px 0 0",
               }} />
 
@@ -265,18 +265,18 @@ export default function RSVPSection() {
                       <label key={opt.value} style={{
                         display: "flex", alignItems: "center", gap: 8,
                         padding: "10px 18px",
-                        border: `2px solid ${attending === opt.value ? "#1B5538" : "rgba(201,151,44,0.3)"}`,
+                        border: `2px solid ${attending === opt.value ? "#C4786A" : "rgba(201,151,44,0.3)"}`,
                         borderRadius: 4,
-                        background: attending === opt.value ? "rgba(19,78,52,0.06)" : "transparent",
+                        background: attending === opt.value ? "rgba(196,120,106,0.06)" : "transparent",
                         cursor: "pointer",
-                        fontSize: 13, color: attending === opt.value ? "#0D3D24" : "var(--text-medium)",
+                        fontSize: 13, color: attending === opt.value ? "#9E5A4E" : "var(--text-medium)",
                         transition: "all 0.2s",
                       }}>
                         <input
                           type="radio"
                           value={opt.value}
                           {...register("attending")}
-                          style={{ accentColor: "#1B5538" }}
+                          style={{ accentColor: "#C4786A" }}
                         />
                         {opt.label}
                       </label>
@@ -312,11 +312,11 @@ export default function RSVPSection() {
                               type="checkbox"
                               value={event.name}
                               {...register("events")}
-                              style={{ accentColor: "#1B5538", width: 16, height: 16 }}
+                              style={{ accentColor: "#C4786A", width: 16, height: 16 }}
                             />
                             <span>
-                              <strong style={{ color: "#0D3D24" }}>{event.name}</strong>
-                              <span style={{ color: "rgba(10,51,34,0.5)", marginLeft: 6 }}>
+                              <strong style={{ color: "#9E5A4E" }}>{event.name}</strong>
+                              <span style={{ color: "rgba(158,90,78,0.5)", marginLeft: 6 }}>
                                 — {event.date}, {event.time}
                               </span>
                             </span>
@@ -363,8 +363,8 @@ export default function RSVPSection() {
                   style={{
                     padding: "16px 32px",
                     background: loading
-                      ? "rgba(19,78,52,0.4)"
-                      : "linear-gradient(135deg, #1B5538, #0D3D24)",
+                      ? "rgba(196,120,106,0.4)"
+                      : "linear-gradient(135deg, #C4786A, #9E5A4E)",
                     border: "none",
                     borderRadius: 4,
                     color: "#C9972C",
@@ -372,7 +372,7 @@ export default function RSVPSection() {
                     fontFamily: "var(--font-jost, sans-serif)",
                     cursor: loading ? "not-allowed" : "pointer",
                     transition: "all 0.3s",
-                    boxShadow: "0 4px 20px rgba(19,78,52,0.3)",
+                    boxShadow: "0 4px 20px rgba(196,120,106,0.3)",
                   }}
                 >
                   {loading ? "Sending…" : "Send My RSVP 🙏"}
@@ -391,7 +391,7 @@ const labelStyle: React.CSSProperties = {
   fontSize: 10,
   letterSpacing: 3,
   textTransform: "uppercase",
-  color: "#1B5538",
+  color: "#C4786A",
   fontFamily: "var(--font-jost, sans-serif)",
   marginBottom: 8,
 };

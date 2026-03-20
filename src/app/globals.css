@@ -1,41 +1,59 @@
 ﻿@import "tailwindcss";
 
+/* ═══ LENIS RECOMMENDED CSS ═══════════════════════════ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
 /* ═══════════════════════════════════════════════════════
    SOUTH INDIAN WEDDING — THEME SYSTEM (Tailwind v4)
 ═══════════════════════════════════════════════════════ */
 @theme {
-  --color-maroon: #1B5538;
-  --color-maroon-dark: #0D3D24;
-  --color-maroon-light: #2A7A50;
+  --color-primary: #C4786A;
+  --color-primary-dark: #9E5A4E;
+  --color-primary-light: #D4957F;
   --color-gold: #C9972C;
   --color-gold-light: #E8C068;
   --color-gold-dark: #9A7020;
   --color-vermillion: #E34234;
-  --color-cream: #FDF8EF;
-  --color-ivory: #F5F3EC;
-  --color-deep-green: #006400;
-  --color-purple: #1A5B8F;
+  --color-cream: #FFFBF7;
+  --color-ivory: #FAF7F3;
+  --color-teal: #2E7D7A;
+  --color-violet: #7B5EA7;
   --color-saffron: #FF9933;
 }
 
 /* ═══ CSS CUSTOM PROPERTIES ═══ */
 :root {
-  --bg: #F5F3EC;
-  --bg-dark: #071E13;
-  --text: #1C2E22;
-  --text-medium: #3D6E4E;
-  --text-light: #7EAB8A;
-  --maroon: #1B5538;
-  --maroon-dark: #0D3D24;
+  --bg: #FAF7F3;
+  --bg-dark: #1E1510;
+  --text: #2A1F17;
+  --text-medium: #7A5C47;
+  --text-light: #B89A88;
+  --maroon: #C4786A;
+  --maroon-dark: #9E5A4E;
   --gold: #C9972C;
   --gold-light: #E8C068;
   --gold-dark: #9A7020;
-  --cream: #FDF8EF;
+  --cream: #FFFBF7;
   --vermillion: #E34234;
-  --deep-green: #006400;
-  --purple: #1A5B8F;
-  --shadow-gold: 0 0 30px rgba(201, 151, 44, 0.3);
-  --shadow-maroon: 0 4px 30px rgba(19, 78, 52, 0.25);
+  --deep-green: #2E7D7A;
+  --purple: #7B5EA7;
+  --shadow-gold: 0 0 30px rgba(201, 151, 44, 0.2);
+  --shadow-maroon: 0 4px 30px rgba(196, 120, 106, 0.2);
 }
 
 /* ═══ RESET & BASE ═══ */
@@ -47,7 +65,7 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth removed — handled by Lenis */
 }
 
 body {
@@ -199,22 +217,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   to { opacity: 1; transform: translateY(0) rotateX(0deg); filter: blur(0); }
 }
 
-@keyframes doorOpenLeft {
-  from { transform: perspective(1200px) rotateY(0deg); transform-origin: left; }
-  to { transform: perspective(1200px) rotateY(-90deg); transform-origin: left; }
-}
-
-@keyframes doorOpenRight {
-  from { transform: perspective(1200px) rotateY(0deg); transform-origin: right; }
-  to { transform: perspective(1200px) rotateY(90deg); transform-origin: right; }
-}
-
 /* ═══ PRELOADER ═══ */
 #preloader {
   position: fixed;
   inset: 0;
   z-index: 10000;
-  background: #040F09;
+  background: #FAF7F3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,12 +265,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 #nav.nav-scrolled {
-  background: rgba(250, 246, 233, 0.92);
+  background: rgba(255, 251, 247, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 16px 40px;
-  border-bottom: 1px solid rgba(201, 151, 44, 0.2);
-  box-shadow: 0 2px 30px rgba(19, 78, 52, 0.08);
+  border-bottom: 1px solid rgba(201, 151, 44, 0.18);
+  box-shadow: 0 2px 24px rgba(42, 31, 23, 0.07);
 }
 
 /* ═══ HERO ═══ */
@@ -298,7 +306,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .gallery-item:hover img { transform: scale(1.06); }
 .gallery-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(19,78,52,0.8) 100%);
+  background: linear-gradient(180deg, transparent 50%, rgba(42,31,23,0.75) 100%);
   opacity: 0; transition: opacity 0.4s;
   display: flex; align-items: flex-end; padding: 16px;
 }
@@ -307,7 +315,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ═══ RSVP FORM ═══ */
 .rsvp-input {
   width: 100%;
-  background: rgba(255,253,208,0.5);
+  background: rgba(255,253,240,0.5);
   border: 1px solid rgba(201,151,44,0.3);
   border-radius: 4px;
   padding: 12px 16px;

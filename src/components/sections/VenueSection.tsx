@@ -52,7 +52,7 @@ export default function VenueSection() {
               fontFamily: "var(--font-cormorant, serif)",
               fontSize: "clamp(36px, 6vw, 64px)",
               fontWeight: 300,
-              color: "#0D3D24",
+              color: "#9E5A4E",
             }}
           >
             Where It All<br />
@@ -76,14 +76,14 @@ export default function VenueSection() {
               borderRadius: 6,
               overflow: "hidden",
               border: "1px solid rgba(201,151,44,0.3)",
-              boxShadow: "0 8px 50px rgba(19,78,52,0.12)",
+              boxShadow: "0 8px 50px rgba(196,120,106,0.12)",
               position: "relative",
             }}
           >
             {/* Gold top border */}
             <div style={{
               height: 4,
-              background: "linear-gradient(90deg, #1B5538, #C9972C, #1B5538)",
+              background: "linear-gradient(90deg, #C4786A, #C9972C, #C4786A)",
             }} />
             <iframe
               src={WEDDING.wedding.venue.googleMapsEmbed}
@@ -107,17 +107,17 @@ export default function VenueSection() {
               flex: "1 1 300px",
               maxWidth: 420,
               padding: "40px 36px",
-              background: "#FDF8EF",
+              background: "#FFFBF7",
               border: "1px solid rgba(201,151,44,0.3)",
               borderRadius: 6,
               position: "relative",
-              boxShadow: "0 4px 30px rgba(19,78,52,0.08)",
+              boxShadow: "0 4px 30px rgba(196,120,106,0.08)",
             }}
           >
             {/* Decorative top */}
             <div style={{
               position: "absolute", top: 0, left: 0, right: 0, height: 4,
-              background: "linear-gradient(90deg, #1B5538, #C9972C, #1B5538)",
+              background: "linear-gradient(90deg, #C4786A, #C9972C, #C4786A)",
               borderRadius: "6px 6px 0 0",
             }} />
 
@@ -127,7 +127,7 @@ export default function VenueSection() {
             <h3 style={{
               fontFamily: "var(--font-cormorant, serif)",
               fontSize: 26, fontWeight: 500,
-              color: "#0D3D24", marginBottom: 8, lineHeight: 1.2,
+              color: "#9E5A4E", marginBottom: 8, lineHeight: 1.2,
             }}>
               {WEDDING.wedding.venue.name}
             </h3>
@@ -147,7 +147,7 @@ export default function VenueSection() {
                   border: "1px solid rgba(201,151,44,0.5)",
                   borderRadius: 3,
                   background: copied ? "rgba(201,151,44,0.15)" : "transparent",
-                  color: copied ? "#0D3D24" : "#1B5538",
+                  color: copied ? "#9E5A4E" : "#C4786A",
                   fontSize: 11, letterSpacing: 3, textTransform: "uppercase",
                   fontFamily: "var(--font-jost, sans-serif)",
                   cursor: "pointer",
@@ -165,7 +165,7 @@ export default function VenueSection() {
                 rel="noopener noreferrer"
                 style={{
                   padding: "12px 20px",
-                  background: "linear-gradient(135deg, #1B5538, #0D3D24)",
+                  background: "linear-gradient(135deg, #C4786A, #9E5A4E)",
                   borderRadius: 3,
                   color: "#C9972C",
                   fontSize: 11, letterSpacing: 3, textTransform: "uppercase",
@@ -174,7 +174,7 @@ export default function VenueSection() {
                   display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                   transition: "all 0.3s",
                   textDecoration: "none",
-                  boxShadow: "0 4px 20px rgba(19,78,52,0.3)",
+                  boxShadow: "0 4px 20px rgba(196,120,106,0.3)",
                 }}
                 onMouseEnter={e => { (e.currentTarget).style.transform = "translateY(-2px)"; }}
                 onMouseLeave={e => { (e.currentTarget).style.transform = "translateY(0)"; }}
@@ -196,11 +196,11 @@ export default function VenueSection() {
             {/* Distance info */}
             <div style={{
               marginTop: 24, padding: "14px 16px",
-              background: "rgba(19,78,52,0.04)",
+              background: "rgba(196,120,106,0.04)",
               borderRadius: 4,
               fontSize: 12, color: "var(--text-medium)", lineHeight: 1.8,
             }}>
-              <strong style={{ color: "#0D3D24" }}>🛫 Outstation Guests:</strong><br />
+              <strong style={{ color: "#9E5A4E" }}>🛫 Outstation Guests:</strong><br />
               Nearest airport: Madurai Airport (IXM) — 12 km<br />
               Nearest railway: Madurai Junction — 3 km<br />
               Recommended hotels: Hotel Heritage Madurai, Grand Central

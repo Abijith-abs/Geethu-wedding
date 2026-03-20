@@ -32,7 +32,7 @@ export default function StoryTimeline() {
       {/* Silk pattern overlay */}
       <div style={{
         position: "absolute", inset: 0, opacity: 0.025, pointerEvents: "none",
-        backgroundImage: `repeating-linear-gradient(45deg, #1B5538 0, #1B5538 1px, transparent 0, transparent 50%)`,
+        backgroundImage: `repeating-linear-gradient(45deg, #C4786A 0, #C4786A 1px, transparent 0, transparent 50%)`,
         backgroundSize: "30px 30px",
       }} />
 
@@ -52,7 +52,7 @@ export default function StoryTimeline() {
               fontFamily: "var(--font-cormorant, serif)",
               fontSize: "clamp(36px, 6vw, 64px)",
               fontWeight: 300,
-              color: "#0D3D24",
+              color: "#9E5A4E",
             }}
           >
             How We Found<br />
@@ -79,7 +79,7 @@ export default function StoryTimeline() {
               style={{
                 width: "100%",
                 height: lineHeight,
-                background: "linear-gradient(180deg, #C9972C 0%, #1B5538 100%)",
+                background: "linear-gradient(180deg, #C9972C 0%, #C4786A 100%)",
                 transformOrigin: "top",
               }}
             />
@@ -108,20 +108,20 @@ export default function StoryTimeline() {
                 {/* Card */}
                 <div style={{
                   width: "45%",
-                  background: "#FDF8EF",
+                  background: "#FFFBF7",
                   border: "1px solid rgba(201,151,44,0.25)",
                   borderRadius: 4,
                   padding: "24px 28px",
                   position: "relative",
-                  boxShadow: "0 4px 30px rgba(19,78,52,0.06)",
+                  boxShadow: "0 4px 30px rgba(196,120,106,0.06)",
                   transition: "box-shadow 0.3s, transform 0.3s",
                 }}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 40px rgba(19,78,52,0.14)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 40px rgba(196,120,106,0.14)";
                     (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
                   }}
                   onMouseLeave={e => {
-                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 30px rgba(19,78,52,0.06)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "0 4px 30px rgba(196,120,106,0.06)";
                     (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
                   }}
                 >
@@ -140,7 +140,7 @@ export default function StoryTimeline() {
                       fontFamily: "var(--font-cormorant, serif)",
                       fontSize: 22,
                       fontWeight: 500,
-                      color: "#0D3D24",
+                      color: "#9E5A4E",
                     }}>
                       {milestone.title}
                     </h3>
@@ -170,7 +170,7 @@ export default function StoryTimeline() {
                   top: "50%",
                   transform: "translate(-50%, -50%)",
                   width: 40, height: 40,
-                  background: "#FDF8EF",
+                  background: "#FFFBF7",
                   border: "2px solid #C9972C",
                   borderRadius: "50%",
                   display: "flex",

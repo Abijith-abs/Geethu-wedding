@@ -78,7 +78,7 @@ function PersonCard({
         margin: "0 auto 24px",
         position: "relative",
         padding: 4,
-        background: "linear-gradient(135deg, #C9972C, #1B5538, #C9972C)",
+        background: "linear-gradient(135deg, #C9972C, #C4786A, #C9972C)",
         animation: "glowPulse 3s ease-in-out infinite",
       }}>
         <div style={{
@@ -114,7 +114,7 @@ function PersonCard({
         fontFamily: "var(--font-cormorant, serif)",
         fontSize: "clamp(28px, 4vw, 42px)",
         fontWeight: 400,
-        color: "#0D3D24",
+        color: "#9E5A4E",
         letterSpacing: 2,
         marginBottom: 4,
       }}>
@@ -201,7 +201,7 @@ export default function CoupleSection() {
               transform={`rotate(${i * 15} ${300 + 240 * Math.cos(a)} ${300 + 240 * Math.sin(a)})`}
               fill="#C9972C" />;
           })}
-          <circle cx="300" cy="300" r="60" fill="#1B5538" />
+          <circle cx="300" cy="300" r="60" fill="#C4786A" />
         </svg>
       </div>
 
@@ -219,7 +219,7 @@ export default function CoupleSection() {
             fontFamily: "var(--font-cormorant, serif)",
             fontSize: "clamp(36px, 6vw, 64px)",
             fontWeight: 300,
-            color: "#0D3D24",
+            color: "#9E5A4E",
             lineHeight: 1.1,
           }}>
             Two Souls,<br />
@@ -266,7 +266,7 @@ export default function CoupleSection() {
             {/* Infinity / heart connector */}
             <svg width="50" height="30" viewBox="0 0 50 30" fill="none" aria-hidden="true">
               <path d="M25 15 C25 15 8 0 8 12 C8 20 16 20 25 15 C34 20 42 20 42 12 C42 0 25 15 25 15Z"
-                fill="#1B5538" opacity="0.4" />
+                fill="#C4786A" opacity="0.4" />
             </svg>
             <div style={{ width: 1, flex: 1, background: "linear-gradient(180deg, #C9972C, transparent)" }} />
           </div>

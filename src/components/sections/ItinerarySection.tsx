@@ -7,10 +7,10 @@ import { MandalaDivider } from "@/components/svg/Decoratives";
 import { staggerContainer, staggerItem } from "@/lib/animations";
 
 const CATEGORY_COLORS: Record<string, string> = {
-  ceremony: "#1B5538",
+  ceremony: "#C4786A",
   ritual: "#C9972C",
   celebration: "#006400",
-  feast: "#1A5B8F",
+  feast: "#7B5EA7",
   custom: "#E34234",
 };
 
@@ -23,7 +23,7 @@ export default function ItinerarySection() {
       id="itinerary"
       style={{
         padding: "100px 20px",
-        background: "linear-gradient(180deg, #071E13 0%, #0C2918 100%)",
+        background: "linear-gradient(180deg, #1E1510 0%, #1A100B 100%)",
         position: "relative",
         overflow: "hidden",
       }}

@@ -1,57 +1,53 @@
 ﻿"use client";
 
 import { useEffect, useRef } from "react";
-import { KolamSVG, KuthuvilakkuSVG, OmSymbol } from "@/components/svg/Decoratives";
 import { WEDDING } from "@/lib/constants";
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const preloaderRef = useRef<HTMLDivElement>(null);
-  const doorLeftRef = useRef<HTMLDivElement>(null);
-  const doorRightRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Dynamically import GSAP to avoid SSR issues
     let cancelled = false;
     import("gsap").then(({ gsap }) => {
       if (cancelled) return;
-      const el = preloaderRef.current;
-      if (!el) return;
 
-      const tl = gsap.timeline({
-        onComplete: () => {
-          if (!cancelled) onComplete();
-        },
-      });
+      // ── Initial states ──────────────────────────────────────
+      gsap.set(".pre-ring-outer", { scale: 0, opacity: 0 });
+      gsap.set(".pre-ring-inner", { scale: 0, opacity: 0 });
+      gsap.set(".pre-ring-draw", { strokeDashoffset: 1168 });
+      gsap.set(".pre-ring-dots circle", { scale: 0, opacity: 0, transformOrigin: "center" });
+      gsap.set(".pre-ornament", { opacity: 0, y: 8 });
+      gsap.set(".pre-sub", { opacity: 0, y: 10 });
+      gsap.set(".pre-bride", { opacity: 0, x: -24 });
+      gsap.set(".pre-amp", { opacity: 0, scale: 0.6 });
+      gsap.set(".pre-groom", { opacity: 0, x: 24 });
+      gsap.set(".pre-divider-line", { scaleX: 0 });
+      gsap.set(".pre-date", { opacity: 0, y: 8 });
+      gsap.set(".pre-enter", { opacity: 0, y: 12 });
 
-      // Phase 1: Lamp flickers to life
-      tl.set(".pre-lamp", { opacity: 0, scale: 0.7 })
-        .set(".pre-flame", { opacity: 0, scale: 0 })
-        .set(".pre-glow", { opacity: 0, scale: 0 })
-        .set(".pre-kolam", { opacity: 0 })
-        .set(".pre-om", { opacity: 0, scale: 0.5 })
-        .set(".pre-names", { opacity: 0, y: 30 })
-        .set(".pre-tagline", { opacity: 0, y: 20 })
-        .set(".pre-enter-btn", { opacity: 0, y: 20 })
-        .set(".pre-door-left", { opacity: 1, rotationY: 0 })
-        .set(".pre-door-right", { opacity: 1, rotationY: 0 })
+      const tl = gsap.timeline();
 
-        // Lamp scales in
-        .to(".pre-lamp", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" }, 0.3)
-
-        // Flame flickers on
-        .to(".pre-flame", { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 0.9)
-        .to(".pre-glow", { opacity: 1, scale: 1.5, duration: 0.6, ease: "power2.out" }, 1.0)
-
-        // Kolam draws around lamp
-        .to(".pre-kolam", { opacity: 1, duration: 0.3 }, 1.3)
-
-        // OM / Sri symbol fades in
-        .to(".pre-om", { opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.7)" }, 2.5)
-
-        // Names appear
-        .to(".pre-names", { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" }, 3.2)
-        .to(".pre-tagline", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 3.9)
-        .to(".pre-enter-btn", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 4.3);
+      tl
+        // Outer ring blooms
+        .to(".pre-ring-outer", { scale: 1, opacity: 1, duration: 1.4, ease: "expo.out" }, 0.1)
+        .to(".pre-ring-inner", { scale: 1, opacity: 1, duration: 1.1, ease: "expo.out" }, 0.3)
+        // SVG ring stroke-draws itself
+        .to(".pre-ring-draw",  { strokeDashoffset: 0, duration: 2.4, ease: "power2.inOut" }, 0.2)
+        // Dots pop in staggered along the ring
+        .to(".pre-ring-dots circle", { scale: 1, opacity: 1, duration: 0.4, stagger: 0.12, ease: "back.out(2)" }, 1.6)
+        // Italic tagline
+        .to(".pre-ornament", { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 2.2)
+        // Malayalam names
+        .to(".pre-sub", { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 2.7)
+        // Main names slide in from sides
+        .to(".pre-bride", { opacity: 1, x: 0, duration: 1.0, ease: "power3.out" }, 3.0)
+        .to(".pre-amp",   { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 3.3)
+        .to(".pre-groom", { opacity: 1, x: 0, duration: 1.0, ease: "power3.out" }, 3.4)
+        // Divider draws
+        .to(".pre-divider-line", { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, 4.0)
+        // Date + button
+        .to(".pre-date",  { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 4.5)
+        .to(".pre-enter", { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 4.9);
     });
 
     return () => { cancelled = true; };
@@ -59,237 +55,215 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
 
   const handleEnter = () => {
     import("gsap").then(({ gsap }) => {
-      const tl = gsap.timeline({
-        onComplete: onComplete,
-      });
+      const tl = gsap.timeline({ onComplete: onComplete });
 
-      tl.to(".pre-enter-btn", { opacity: 0, duration: 0.3 })
-        .to(".pre-door-left", {
-          rotationY: -90,
-          duration: 1.0,
-          ease: "power2.inOut",
-          transformOrigin: "left center",
-          transformPerspective: 1200,
-        }, 0.2)
-        .to(".pre-door-right", {
-          rotationY: 90,
-          duration: 1.0,
-          ease: "power2.inOut",
-          transformOrigin: "right center",
-          transformPerspective: 1200,
-        }, 0.2)
-        .to(preloaderRef.current, { opacity: 0, duration: 0.5 }, 0.8);
+      tl
+        .to(".pre-enter", { opacity: 0, scale: 0.9, duration: 0.2 })
+        .to(".pre-bride, .pre-amp, .pre-groom, .pre-ornament, .pre-sub, .pre-date, .pre-divider-line", {
+          opacity: 0, y: -14, duration: 0.45, stagger: 0.04, ease: "power2.in",
+        }, 0.1)
+        .to(".pre-ring-draw", { strokeDashoffset: -1168, duration: 0.55, ease: "power2.in" }, 0.2)
+        .to(".pre-ring-dots circle", { scale: 0, opacity: 0, duration: 0.3, stagger: 0.05 }, 0.15)
+        .to(".pre-ring-inner, .pre-ring-outer", {
+          scale: 12, opacity: 0, duration: 0.8, ease: "expo.in",
+        }, 0.4)
+        .to(preloaderRef.current, { opacity: 0, duration: 0.35 }, 0.9);
     });
   };
+
+  // Dot positions along the SVG ring (r=186, cx=200, cy=200)
+  const ringDots = [0, 60, 120, 180, 240, 300].map((deg) => {
+    const rad = (deg - 90) * (Math.PI / 180);
+    return { cx: 200 + 186 * Math.cos(rad), cy: 200 + 186 * Math.sin(rad), accent: deg % 120 === 0 };
+  });
 
   return (
     <div
       ref={preloaderRef}
       id="preloader"
-      style={{ position: "fixed", inset: 0, zIndex: 10000, background: "#040F09", overflow: "hidden" }}
+      style={{ position: "fixed", inset: 0, zIndex: 10000, background: "#FAF7F3", overflow: "hidden" }}
     >
-      {/* Temple door left */}
-      <div
-        ref={doorLeftRef}
-        className="pre-door-left"
-        style={{
-          position: "absolute", top: 0, left: 0, width: "50%", height: "100%",
-          background: "linear-gradient(135deg, #071E13 0%, #0C2918 100%)",
-          zIndex: 10, transformOrigin: "left center",
-          borderRight: "1px solid rgba(201,151,44,0.2)",
-        }}
+      {/* Subtle dot texture */}
+      <div style={{
+        position: "absolute", inset: 0, opacity: 0.03,
+        backgroundImage: "radial-gradient(circle, #9E5A4E 1px, transparent 1px)",
+        backgroundSize: "28px 28px", pointerEvents: "none",
+      }} />
+
+      {/* Outer halo ring */}
+      <div className="pre-ring-outer" style={{
+        position: "absolute",
+        width: "min(500px, 85vw)", height: "min(500px, 85vw)",
+        borderRadius: "50%",
+        border: "1px solid rgba(201,151,44,0.1)",
+      }} />
+
+      {/* Inner halo ring */}
+      <div className="pre-ring-inner" style={{
+        position: "absolute",
+        width: "min(370px, 63vw)", height: "min(370px, 63vw)",
+        borderRadius: "50%",
+        border: "1px solid rgba(201,151,44,0.25)",
+      }} />
+
+      {/* SVG ring that stroke-draws itself + accent dots */}
+      <svg
+        className="pre-ring-dots"
+        style={{ position: "absolute", width: "min(410px, 70vw)", height: "min(410px, 70vw)" }}
+        viewBox="0 0 400 400"
       >
-        {/* Door pattern */}
-        <div style={{
-          position: "absolute", inset: 0, opacity: 0.06,
-          backgroundImage: "repeating-linear-gradient(0deg, #C9972C 0, #C9972C 1px, transparent 0, transparent 50%)",
-          backgroundSize: "30px 30px",
-        }} />
-        <div style={{
-          position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)",
-          width: 24, height: 24, borderRadius: "50%",
-          background: "#C9972C", opacity: 0.6, marginRight: 8,
-        }} />
-      </div>
+        <circle
+          className="pre-ring-draw"
+          cx="200" cy="200" r="186"
+          fill="none"
+          stroke="#C9972C"
+          strokeWidth="0.8"
+          strokeDasharray="1168"
+          strokeDashoffset="1168"
+          strokeLinecap="round"
+          opacity="0.5"
+        />
+        {ringDots.map((d, i) => (
+          <circle key={i} cx={d.cx} cy={d.cy} r={d.accent ? 2.8 : 1.6}
+            fill="#C9972C" opacity={d.accent ? 0.6 : 0.35} />
+        ))}
+      </svg>
 
-      {/* Temple door right */}
-      <div
-        ref={doorRightRef}
-        className="pre-door-right"
-        style={{
-          position: "absolute", top: 0, right: 0, width: "50%", height: "100%",
-          background: "linear-gradient(225deg, #071E13 0%, #0C2918 100%)",
-          zIndex: 10, transformOrigin: "right center",
-          borderLeft: "1px solid rgba(201,151,44,0.2)",
-        }}
-      >
-        <div style={{
-          position: "absolute", inset: 0, opacity: 0.06,
-          backgroundImage: "repeating-linear-gradient(0deg, #C9972C 0, #C9972C 1px, transparent 0, transparent 50%)",
-          backgroundSize: "30px 30px",
-        }} />
-        <div style={{
-          position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)",
-          width: 24, height: 24, borderRadius: "50%",
-          background: "#C9972C", opacity: 0.6, marginLeft: 8,
-        }} />
-      </div>
-
-      {/* Background glow */}
-      <div
-        className="pre-glow"
-        style={{
-          position: "absolute", top: "50%", left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 400, height: 400, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(255,165,0,0.15) 0%, rgba(255,69,0,0.05) 50%, transparent 70%)",
-          opacity: 0, zIndex: 1,
-        }}
-      />
-
-      {/* Kolam pattern */}
-      <div
-        className="pre-kolam"
-        style={{
-          position: "absolute", top: "50%", left: "50%",
-          transform: "translate(-50%, -50%)",
-          opacity: 0, zIndex: 2,
-        }}
-      >
-        <KolamSVG size={320} animated />
-      </div>
-
-      {/* Content center */}
+      {/* Centre content */}
       <div style={{
         position: "relative", zIndex: 5,
         display: "flex", flexDirection: "column",
-        alignItems: "center", justifyContent: "center",
-        height: "100%", gap: 0,
+        alignItems: "center", textAlign: "center",
+        padding: "0 28px",
       }}>
-        {/* OM symbol */}
-        <div className="pre-om" style={{ marginBottom: 8 }}>
-          <OmSymbol size={50} />
+        {/* Italic tagline */}
+        <div className="pre-ornament" style={{
+          fontFamily: "var(--font-cormorant, serif)",
+          fontStyle: "italic",
+          fontSize: "clamp(13px, 2.5vw, 17px)",
+          color: "rgba(201,151,44,0.7)",
+          letterSpacing: 3,
+          marginBottom: 18,
+        }}>
+          Together with their families
         </div>
 
-        {/* Lamp + Flame */}
-        <div style={{ position: "relative", marginBottom: 16 }}>
-          <div className="pre-lamp">
-            <KuthuvilakkuSVG size={70} />
-          </div>
-          <div className="pre-flame" style={{
-            position: "absolute", top: -8, left: "50%", transform: "translateX(-50%)",
-          }}>
-            {/* Extra glow */}
-            <div style={{
-              width: 40, height: 40, borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(255,200,0,0.4) 0%, transparent 70%)",
-              animation: "glowPulse 1.5s ease-in-out infinite",
-            }} />
-          </div>
+        {/* Malayalam names */}
+        <div className="pre-sub" style={{
+          fontFamily: "var(--font-malayalam, serif)",
+          fontSize: "clamp(14px, 2.8vw, 18px)",
+          color: "#B89A88",
+          letterSpacing: 3,
+          marginBottom: 20,
+        }}>
+          {WEDDING.bride.tamilName} &amp; {WEDDING.groom.tamilName}
         </div>
 
         {/* Couple names */}
-        <div className="pre-names" style={{ textAlign: "center", marginBottom: 8 }}>
-          <div style={{
+        <div style={{ display: "flex", alignItems: "center", gap: "clamp(10px, 3vw, 26px)" }}>
+          <div className="pre-bride" style={{
+            fontFamily: "var(--font-cormorant, serif)",
+            fontSize: "clamp(38px, 9vw, 84px)",
+            fontWeight: 300,
+            color: "#2A1F17",
+            letterSpacing: "clamp(2px, 1vw, 7px)",
+            lineHeight: 1,
+          }}>
+            {WEDDING.bride.nickname}
+          </div>
+
+          <div className="pre-amp" style={{
             fontFamily: "var(--font-great-vibes, cursive)",
-            fontSize: 16, color: "#C9972C", letterSpacing: 3,
-            marginBottom: 4, opacity: 0.8,
+            fontSize: "clamp(30px, 7vw, 68px)",
+            color: "#C9972C",
+            lineHeight: 1,
           }}>
-            Together with their families
+            &amp;
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <span style={{
-              fontFamily: "var(--font-cormorant, 'Cormorant Garamond', serif)",
-              fontSize: "clamp(36px, 8vw, 64px)",
-              fontWeight: 300, color: "#F5F3EC", letterSpacing: 4,
-            }}>
-              {WEDDING.bride.nickname}
-            </span>
-            <span style={{
-              fontFamily: "var(--font-great-vibes, cursive)",
-              fontSize: "clamp(28px, 6vw, 48px)",
-              color: "#C9972C",
-            }}>
-              &amp;
-            </span>
-            <span style={{
-              fontFamily: "var(--font-cormorant, 'Cormorant Garamond', serif)",
-              fontSize: "clamp(36px, 8vw, 64px)",
-              fontWeight: 300, color: "#F5F3EC", letterSpacing: 4,
-            }}>
-              {WEDDING.groom.nickname}
-            </span>
-          </div>
-          <div style={{
-            fontFamily: "var(--font-malayalam, serif)",
-            fontSize: 18, color: "#C9972C",
-            opacity: 0.7, marginTop: 4, letterSpacing: 2,
+
+          <div className="pre-groom" style={{
+            fontFamily: "var(--font-cormorant, serif)",
+            fontSize: "clamp(38px, 9vw, 84px)",
+            fontWeight: 300,
+            color: "#2A1F17",
+            letterSpacing: "clamp(2px, 1vw, 7px)",
+            lineHeight: 1,
           }}>
-            {WEDDING.bride.tamilName} &amp; {WEDDING.groom.tamilName}
+            {WEDDING.groom.nickname}
           </div>
         </div>
 
-        {/* Tagline */}
-        <div className="pre-tagline" style={{
-          fontSize: 10, letterSpacing: 8, textTransform: "uppercase",
-          color: "rgba(201,151,44,0.6)", marginBottom: 36,
+        {/* Gold divider */}
+        <div className="pre-divider-line" style={{
+          width: "clamp(120px, 28vw, 200px)", height: 1,
+          background: "linear-gradient(90deg, transparent, #C9972C 30%, #C9972C 70%, transparent)",
+          transformOrigin: "center",
+          margin: "22px auto 16px",
+        }} />
+
+        {/* Date */}
+        <div className="pre-date" style={{
+          fontSize: "clamp(8px, 1.4vw, 10px)",
+          letterSpacing: "clamp(4px, 1.5vw, 8px)",
+          textTransform: "uppercase",
+          color: "#B89A88",
+          marginBottom: 34,
         }}>
-          February 14, 2027 · Madurai
+          February 14, 2027 &nbsp;·&nbsp; Ernakulam, Kerala
         </div>
 
         {/* Enter button */}
         <button
-          className="pre-enter-btn"
+          className="pre-enter"
           onClick={handleEnter}
           style={{
-            padding: "14px 40px",
-            border: "1px solid rgba(201,151,44,0.6)",
+            padding: "11px 36px",
+            border: "1px solid rgba(201,151,44,0.4)",
             background: "transparent",
-            color: "#C9972C",
-            fontSize: 11,
+            color: "#9E5A4E",
+            fontSize: "clamp(8px, 1.4vw, 10px)",
             letterSpacing: 6,
             textTransform: "uppercase",
             cursor: "pointer",
             fontFamily: "var(--font-jost, sans-serif)",
-            transition: "all 0.3s",
-            borderRadius: 2,
-            position: "relative",
-            overflow: "hidden",
+            transition: "all 0.3s ease",
+            borderRadius: 1,
           }}
-          onMouseEnter={e => {
-            (e.target as HTMLButtonElement).style.background = "rgba(201,151,44,0.1)";
-            (e.target as HTMLButtonElement).style.boxShadow = "0 0 20px rgba(201,151,44,0.2)";
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(201,151,44,0.07)";
+            e.currentTarget.style.borderColor = "rgba(201,151,44,0.65)";
+            e.currentTarget.style.color = "#C9972C";
           }}
-          onMouseLeave={e => {
-            (e.target as HTMLButtonElement).style.background = "transparent";
-            (e.target as HTMLButtonElement).style.boxShadow = "none";
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "transparent";
+            e.currentTarget.style.borderColor = "rgba(201,151,44,0.4)";
+            e.currentTarget.style.color = "#9E5A4E";
           }}
         >
-          🎵 Enter &amp; Play Music
+          Open Invitation
         </button>
       </div>
 
-      {/* Corner decorations */}
-      {["top:0;left:0", "top:0;right:0", "bottom:0;left:0", "bottom:0;right:0"].map((pos, i) => {
-        const [v, h] = pos.split(";");
-        const rotations = [0, 90, 270, 180];
-        return (
-          <div key={i} style={{
-            position: "absolute",
-            [v.split(":")[0]]: v.split(":")[1],
-            [h.split(":")[0]]: h.split(":")[1],
-            width: 120, height: 120, opacity: 0.25, zIndex: 1,
-            transform: `rotate(${rotations[i]}deg)`,
-          }}>
-            <svg viewBox="0 0 120 120" fill="none">
-              <path d="M5 115 L5 25 C5 14 14 5 25 5 L115 5" stroke="#C9972C" strokeWidth="1.5" strokeLinecap="round" />
-              <path d="M5 115 L5 45 C5 24 24 5 45 5 L115 5" stroke="#C9972C" strokeWidth="0.5" opacity="0.4" strokeLinecap="round" />
-              <circle cx="14" cy="14" r="6" stroke="#C9972C" strokeWidth="1.5" />
-              <circle cx="14" cy="14" r="2.5" fill="#C9972C" opacity="0.5" />
-            </svg>
-          </div>
-        );
-      })}
+      {/* Minimal corner brackets */}
+      {[
+        { top: 18, left: 18, r: 0 },
+        { top: 18, right: 18, r: 90 },
+        { bottom: 18, right: 18, r: 180 },
+        { bottom: 18, left: 18, r: 270 },
+      ].map((p, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          top: p.top, left: (p as any).left,
+          right: (p as any).right, bottom: (p as any).bottom,
+          width: 32, height: 32,
+          transform: `rotate(${p.r}deg)`,
+          opacity: 0.3,
+        }}>
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M2 30 L2 8 C2 4.5 4.5 2 8 2 L30 2" stroke="#C9972C" strokeWidth="1" strokeLinecap="round" />
+          </svg>
+        </div>
+      ))}
     </div>
   );
 }

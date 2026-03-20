@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { WEDDING } from "@/lib/constants";
-import { GopuramSilhouette, ToranSVG, KuthuvilakkuSVG, LotusDivider } from "@/components/svg/Decoratives";
+import { GopuramSilhouette, KuthuvilakkuSVG, LotusDivider } from "@/components/svg/Decoratives";
 import Countdown from "./Countdown";
 
 export default function Hero() {
@@ -29,7 +29,7 @@ export default function Hero() {
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
-        background: "#040F09",
+        background: "#120C08",
       }}
     >
       {/* Parallax background layers */}
@@ -37,7 +37,7 @@ export default function Hero() {
         {/* Deep background gradient */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse at 50% 60%, #0B3D23 0%, #071E13 50%, #040F09 100%)",
+          background: "radial-gradient(ellipse at 50% 60%, #1A100B 0%, #1E1510 50%, #120C08 100%)",
         }} />
         {/* Silk texture overlay */}
         <div style={{
@@ -63,12 +63,41 @@ export default function Hero() {
         <GopuramSilhouette />
       </div>
 
-      {/* Mango leaf toran — top */}
+      {/* CSS bead ornament — top border accent (replaces leaf toran) */}
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0,
-        zIndex: 3, opacity: 0.7, pointerEvents: "none",
+        zIndex: 3, pointerEvents: "none",
       }}>
-        <ToranSVG />
+        {/* Top gradient glow */}
+        <div style={{
+          height: 1,
+          background: "linear-gradient(90deg, transparent 4%, rgba(201,151,44,0.45) 25%, rgba(201,151,44,0.55) 50%, rgba(201,151,44,0.45) 75%, transparent 96%)",
+        }} />
+        {/* Bead drops */}
+        <div style={{ display: "flex", justifyContent: "center", paddingTop: 0 }}>
+          {Array.from({ length: 48 }, (_, i) => {
+            const isAccent = i % 8 === 0;
+            const isMid = i % 4 === 2;
+            return (
+              <div key={i} style={{
+                flex: 1, display: "flex", flexDirection: "column", alignItems: "center",
+              }}>
+                <div style={{
+                  width: 1,
+                  height: isAccent ? 22 : isMid ? 15 : 9,
+                  background: `rgba(201,151,44,${isAccent ? 0.5 : 0.28})`,
+                }} />
+                <div style={{
+                  width: isAccent ? 5 : 3,
+                  height: isAccent ? 5 : 3,
+                  borderRadius: "50%",
+                  background: "#C9972C",
+                  opacity: isAccent ? 0.6 : 0.3,
+                }} />
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Ornamental corner borders */}
@@ -158,7 +187,7 @@ export default function Hero() {
             fontWeight: 300,
             lineHeight: 0.9,
             letterSpacing: -1,
-            color: "#FDF8EF",
+            color: "#FFFBF7",
           }}>
             {WEDDING.bride.nickname}
           </h1>
@@ -190,7 +219,7 @@ export default function Hero() {
             fontWeight: 300,
             lineHeight: 0.9,
             letterSpacing: -1,
-            color: "#FDF8EF",
+            color: "#FFFBF7",
           }}>
             {WEDDING.groom.nickname}
           </h1>
@@ -229,7 +258,7 @@ export default function Hero() {
               return <ellipse key={i} cx={10 + 5 * Math.cos(a)} cy={10 + 5 * Math.sin(a)} rx="2.5" ry="4"
                 transform={`rotate(${i * 72 - 90} ${10 + 5 * Math.cos(a)} ${10 + 5 * Math.sin(a)})`} fill="#C9972C" opacity="0.7" />;
             })}
-            <circle cx="10" cy="10" r="2" fill="#1B5538" />
+            <circle cx="10" cy="10" r="2" fill="#C4786A" />
           </svg>
           <div style={{ width: 60, height: 1, background: "linear-gradient(90deg, #C9972C, transparent)" }} />
         </motion.div>

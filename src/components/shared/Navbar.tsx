@@ -56,7 +56,7 @@ export default function Navbar() {
           style={{
             fontFamily: "var(--font-great-vibes, cursive)",
             fontSize: 26,
-            color: scrolled ? "var(--maroon-dark)" : "#FDF8EF",
+            color: scrolled ? "var(--maroon-dark)" : "#FFFBF7",
             transition: "color 0.5s",
             cursor: "pointer",
           }}
@@ -154,21 +154,21 @@ export default function Navbar() {
         >
           <span style={{
             width: 22, height: 1.5,
-            background: scrolled ? "var(--maroon-dark)" : "#FDF8EF",
+            background: scrolled ? "var(--maroon-dark)" : "#FFFBF7",
             display: "block",
             transition: "all 0.3s",
             transform: menuOpen ? "rotate(45deg) translateY(9px)" : "none",
           }} />
           <span style={{
             width: 22, height: 1.5,
-            background: scrolled ? "var(--maroon-dark)" : "#FDF8EF",
+            background: scrolled ? "var(--maroon-dark)" : "#FFFBF7",
             display: "block",
             transition: "all 0.3s",
             opacity: menuOpen ? 0 : 1,
           }} />
           <span style={{
             width: 22, height: 1.5,
-            background: scrolled ? "var(--maroon-dark)" : "#FDF8EF",
+            background: scrolled ? "var(--maroon-dark)" : "#FFFBF7",
             display: "block",
             transition: "all 0.3s",
             transform: menuOpen ? "rotate(-45deg) translateY(-9px)" : "none",
@@ -215,7 +215,7 @@ export default function Navbar() {
               fontFamily: "var(--font-cormorant, serif)",
               fontSize: 32,
               fontStyle: "italic",
-              color: "#FDF8EF",
+              color: "#FFFBF7",
               background: "none",
               border: "none",
               cursor: "pointer",
@@ -226,7 +226,7 @@ export default function Navbar() {
               transitionDelay: `${i * 0.07}s`,
             }}
             onMouseEnter={e => { (e.target as HTMLElement).style.color = "#C9972C"; }}
-            onMouseLeave={e => { (e.target as HTMLElement).style.color = "#FDF8EF"; }}
+            onMouseLeave={e => { (e.target as HTMLElement).style.color = "#FFFBF7"; }}
           >
             {label}
           </button>

@@ -40,16 +40,16 @@ function EventCard({ event, index }: { event: typeof EVENTS[0]; index: number })
         <div className="event-card-front" style={{
           position: "absolute", inset: 0,
           background: event.isPrimary
-            ? `linear-gradient(135deg, #0D3D24, #1B5538, #2A7A50)`
-            : `linear-gradient(135deg, #F5F3EC, #FDF8EF)`,
+            ? `linear-gradient(135deg, #9E5A4E, #C4786A, #D4957F)`
+            : `linear-gradient(135deg, #FAF7F3, #FFFBF7)`,
           border: event.isPrimary ? "2px solid #C9972C" : "1px solid rgba(201,151,44,0.3)",
           borderRadius: 6,
           padding: "32px 28px",
           display: "flex", flexDirection: "column",
           alignItems: "center", textAlign: "center",
           boxShadow: event.isPrimary
-            ? "0 8px 50px rgba(19,78,52,0.4), 0 0 30px rgba(201,151,44,0.2)"
-            : "0 4px 30px rgba(19,78,52,0.08)",
+            ? "0 8px 50px rgba(196,120,106,0.4), 0 0 30px rgba(201,151,44,0.2)"
+            : "0 4px 30px rgba(196,120,106,0.08)",
           overflow: "hidden",
         }}>
           {/* Ornamental corners */}
@@ -79,7 +79,7 @@ function EventCard({ event, index }: { event: typeof EVENTS[0]; index: number })
 
           <div style={{
             fontFamily: "var(--font-malayalam, serif)",
-            fontSize: 16, color: event.isPrimary ? "#C9972C" : "#1B5538",
+            fontSize: 16, color: event.isPrimary ? "#C9972C" : "#C4786A",
             marginBottom: 4, letterSpacing: 2,
           }}>
             {event.tamilName}
@@ -89,7 +89,7 @@ function EventCard({ event, index }: { event: typeof EVENTS[0]; index: number })
             fontFamily: "var(--font-cormorant, serif)",
             fontSize: "clamp(22px, 3vw, 28px)",
             fontWeight: 500,
-            color: event.isPrimary ? "#FDF8EF" : "#0D3D24",
+            color: event.isPrimary ? "#FFFBF7" : "#9E5A4E",
             marginBottom: 6,
           }}>
             {event.name}
@@ -105,14 +105,14 @@ function EventCard({ event, index }: { event: typeof EVENTS[0]; index: number })
 
           <div style={{
             width: 40, height: 1,
-            background: event.isPrimary ? "rgba(201,151,44,0.6)" : "rgba(19,78,52,0.2)",
+            background: event.isPrimary ? "rgba(201,151,44,0.6)" : "rgba(196,120,106,0.2)",
             margin: "0 auto 20px",
           }} />
 
           <div style={{
             fontFamily: "var(--font-cormorant, serif)",
             fontSize: 18,
-            color: event.isPrimary ? "#C9972C" : "#1B5538",
+            color: event.isPrimary ? "#C9972C" : "#C4786A",
             letterSpacing: 1, marginBottom: 4,
           }}>
             {event.date}
@@ -135,7 +135,7 @@ function EventCard({ event, index }: { event: typeof EVENTS[0]; index: number })
         {/* BACK */}
         <div className="event-card-back" style={{
           position: "absolute", inset: 0,
-          background: `linear-gradient(135deg, ${event.color}22, #F5F3EC)`,
+          background: `linear-gradient(135deg, ${event.color}22, #FAF7F3)`,
           border: `1px solid ${event.color}55`,
           borderRadius: 6,
           padding: "28px 24px",
@@ -151,7 +151,7 @@ function EventCard({ event, index }: { event: typeof EVENTS[0]; index: number })
           <h3 style={{
             fontFamily: "var(--font-cormorant, serif)",
             fontSize: 22, fontWeight: 500,
-            color: "#0D3D24", marginBottom: 14,
+            color: "#9E5A4E", marginBottom: 14,
           }}>
             {event.name}
           </h3>
@@ -223,7 +223,7 @@ export default function EventsSection() {
               fontFamily: "var(--font-cormorant, serif)",
               fontSize: "clamp(36px, 6vw, 64px)",
               fontWeight: 300,
-              color: "#0D3D24",
+              color: "#9E5A4E",
             }}
           >
             Five Days of<br />
@@ -272,7 +272,7 @@ export default function EventsSection() {
             lineHeight: 1.8,
           }}
         >
-          <strong style={{ color: "#0D3D24" }}>Dress Code Note: </strong>
+          <strong style={{ color: "#9E5A4E" }}>Dress Code Note: </strong>
           Traditional South Indian attire is warmly encouraged. Kanchipuram silk sarees and veshtis honour the sanctity of the occasion.
         </motion.div>
       </div>

@@ -23,7 +23,7 @@ export default function GiftSection() {
       id="blessings"
       style={{
         padding: "100px 20px",
-        background: "linear-gradient(180deg, #F5F3EC 0%, #F5F3EC 100%)",
+        background: "linear-gradient(180deg, #FAF7F3 0%, #FAF7F3 100%)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -58,7 +58,7 @@ export default function GiftSection() {
               fontFamily: "var(--font-cormorant, serif)",
               fontSize: "clamp(36px, 6vw, 64px)",
               fontWeight: 300,
-              color: "#0D3D24",
+              color: "#9E5A4E",
             }}
           >
             Gifts &amp;
@@ -80,10 +80,10 @@ export default function GiftSection() {
             style={{
               flex: "1 1 340px", maxWidth: 400,
               padding: "48px 36px",
-              background: "#FDF8EF",
+              background: "#FFFBF7",
               border: "1px solid rgba(201,151,44,0.35)",
               borderRadius: 6,
-              boxShadow: "0 4px 30px rgba(19,78,52,0.08)",
+              boxShadow: "0 4px 30px rgba(196,120,106,0.08)",
               textAlign: "center",
               position: "relative",
               overflow: "hidden",
@@ -91,7 +91,7 @@ export default function GiftSection() {
           >
             <div style={{
               position: "absolute", top: 0, left: 0, right: 0, height: 4,
-              background: "linear-gradient(90deg, #1B5538, #C9972C, #1B5538)",
+              background: "linear-gradient(90deg, #C4786A, #C9972C, #C4786A)",
             }} />
 
             {/* Animated gift box */}
@@ -114,7 +114,7 @@ export default function GiftSection() {
 
             <h3 style={{
               fontFamily: "var(--font-cormorant, serif)",
-              fontSize: 26, fontWeight: 500, color: "#0D3D24", marginBottom: 12,
+              fontSize: 26, fontWeight: 500, color: "#9E5A4E", marginBottom: 12,
             }}>
               Your Presence is our Gift
             </h3>
@@ -142,7 +142,7 @@ export default function GiftSection() {
             style={{
               flex: "1 1 340px", maxWidth: 400,
               padding: "48px 36px",
-              background: "linear-gradient(135deg, #071E13, #0C2918)",
+              background: "linear-gradient(135deg, #1E1510, #1A100B)",
               border: "1px solid rgba(201,151,44,0.2)",
               borderRadius: 6,
               boxShadow: "0 4px 30px rgba(0,0,0,0.2)",
@@ -153,7 +153,7 @@ export default function GiftSection() {
           >
             <div style={{
               position: "absolute", top: 0, left: 0, right: 0, height: 4,
-              background: "linear-gradient(90deg, #C9972C, #1B5538, #C9972C)",
+              background: "linear-gradient(90deg, #C9972C, #C4786A, #C9972C)",
             }} />
 
             <div style={{ fontSize: 48, marginBottom: 16 }}>🙏</div>

@@ -115,7 +115,7 @@ export default function Countdown() {
                 fontFamily: "var(--font-cormorant, 'Cormorant Garamond', serif)",
                 fontSize: 32,
                 fontWeight: 500,
-                color: "#FDF8EF",
+                color: "#FFFBF7",
                 position: "relative",
                 zIndex: 1,
                 lineHeight: 1,

@@ -83,7 +83,7 @@ export function KolamSVG({ size = 300, animated = false, className = "" }: { siz
       <circle cx="150" cy="150" r="3" fill="#C9972C" />
       {/* Outer ring */}
       <circle className={pathClass} cx="150" cy="150" r="130" stroke="#C9972C" strokeWidth="0.5" strokeDasharray="4 4" style={{ animationDelay: "2.5s" }} />
-      <circle className={pathClass} cx="150" cy="150" r="110" stroke="#1B5538" strokeWidth="0.5" strokeDasharray="2 6" style={{ animationDelay: "2.8s" }} />
+      <circle className={pathClass} cx="150" cy="150" r="110" stroke="#C4786A" strokeWidth="0.5" strokeDasharray="2 6" style={{ animationDelay: "2.8s" }} />
     </svg>
   );
 }
@@ -125,7 +125,7 @@ export function LotusDivider({ className = "" }: { className?: string }) {
             fill="#C9972C" opacity="0.5"
           />
         ))}
-        <circle cx="24" cy="24" r="6" fill="#1B5538" opacity="0.8" />
+        <circle cx="24" cy="24" r="6" fill="#C4786A" opacity="0.8" />
         <circle cx="24" cy="24" r="3" fill="#C9972C" />
       </svg>
       <div className="h-px flex-1 max-w-24" style={{ background: "linear-gradient(90deg, #C9972C, transparent)" }} />
@@ -139,25 +139,25 @@ export function GopuramSilhouette({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 400 130" fill="none" className={className} preserveAspectRatio="xMidYMax meet" aria-label="Kerala temple">
       {/* Ground platform */}
-      <rect x="30" y="118" width="340" height="12" fill="#1B5538" opacity="0.10" rx="1" />
+      <rect x="30" y="118" width="340" height="12" fill="#C4786A" opacity="0.10" rx="1" />
       {/* Mandapa base wall */}
-      <rect x="70" y="96" width="260" height="22" fill="#1B5538" opacity="0.10" />
+      <rect x="70" y="96" width="260" height="22" fill="#C4786A" opacity="0.10" />
       {/* Pillars */}
       {[92, 120, 148, 176, 204, 232, 260, 288].map((x, i) => (
         <rect key={i} x={x} y="88" width="5" height="30" fill="#C9972C" opacity="0.28" rx="2" />
       ))}
       {/* Lowest wide roof tier — Kerala curved sloping eaves */}
-      <path d="M35 96 Q80 90 110 82 L200 60 L290 82 Q320 90 365 96Z" fill="#1B5538" opacity="0.16" />
+      <path d="M35 96 Q80 90 110 82 L200 60 L290 82 Q320 90 365 96Z" fill="#C4786A" opacity="0.16" />
       {/* Eave accent line */}
       <line x1="100" y1="82" x2="300" y2="82" stroke="#C9972C" strokeWidth="0.6" opacity="0.25" />
       {/* Middle roof tier */}
-      <path d="M105 82 Q140 76 165 68 L200 52 L235 68 Q260 76 295 82Z" fill="#1B5538" opacity="0.14" />
+      <path d="M105 82 Q140 76 165 68 L200 52 L235 68 Q260 76 295 82Z" fill="#C4786A" opacity="0.14" />
       <line x1="140" y1="68" x2="260" y2="68" stroke="#C9972C" strokeWidth="0.6" opacity="0.22" />
       {/* Upper roof tier */}
-      <path d="M150 68 Q170 62 183 54 L200 42 L217 54 Q230 62 250 68Z" fill="#1B5538" opacity="0.13" />
+      <path d="M150 68 Q170 62 183 54 L200 42 L217 54 Q230 62 250 68Z" fill="#C4786A" opacity="0.13" />
       <line x1="168" y1="54" x2="232" y2="54" stroke="#C9972C" strokeWidth="0.5" opacity="0.20" />
       {/* Top small tier */}
-      <path d="M178 54 L200 38 L222 54Z" fill="#1B5538" opacity="0.11" />
+      <path d="M178 54 L200 38 L222 54Z" fill="#C4786A" opacity="0.11" />
       {/* Rounded Kerala sopanam spire stem */}
       <path d="M195 38 L197 31 Q200 20 203 31 L205 38Z" fill="#C9972C" opacity="0.45" />
       {/* Copper finial (amalaka) — elongated oval */}
@@ -222,11 +222,11 @@ export function OmSymbol({ size = 60, className = "" }: { size?: number; classNa
 export function MandalaDivider({ size = 80, className = "" }: { size?: number; className?: string }) {
   return (
     <div className={`flex items-center justify-center gap-6 my-6 ${className}`}>
-      <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, #1B5538 40%, transparent)" }} />
+      <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, #C4786A 40%, transparent)" }} />
       <svg width={size} height={size} viewBox="0 0 80 80" fill="none" aria-hidden="true">
         {/* Rings */}
         <circle cx="40" cy="40" r="38" stroke="#C9972C" strokeWidth="0.5" strokeDasharray="3 3" />
-        <circle cx="40" cy="40" r="30" stroke="#1B5538" strokeWidth="0.5" />
+        <circle cx="40" cy="40" r="30" stroke="#C4786A" strokeWidth="0.5" />
         <circle cx="40" cy="40" r="20" stroke="#C9972C" strokeWidth="0.5" />
         {/* Petals */}
         {Array.from({ length: 12 }, (_, i) => {
@@ -243,12 +243,12 @@ export function MandalaDivider({ size = 80, className = "" }: { size?: number; c
         {/* Inner dots */}
         {Array.from({ length: 8 }, (_, i) => {
           const a = i * 45 * Math.PI / 180;
-          return <circle key={i} cx={40 + 14 * Math.cos(a)} cy={40 + 14 * Math.sin(a)} r="2" fill="#1B5538" opacity="0.5" />;
+          return <circle key={i} cx={40 + 14 * Math.cos(a)} cy={40 + 14 * Math.sin(a)} r="2" fill="#C4786A" opacity="0.5" />;
         })}
         <circle cx="40" cy="40" r="4" fill="#C9972C" opacity="0.8" />
-        <circle cx="40" cy="40" r="1.5" fill="#1B5538" />
+        <circle cx="40" cy="40" r="1.5" fill="#C4786A" />
       </svg>
-      <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, #1B5538 40%, transparent)" }} />
+      <div className="h-px flex-1" style={{ background: "linear-gradient(90deg, transparent, #C4786A 40%, transparent)" }} />
     </div>
   );
 }

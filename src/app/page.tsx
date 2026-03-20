@@ -27,18 +27,44 @@ export default function Home() {
 
   useEffect(() => {
     if (!contentVisible) return;
-    let lenis: { destroy(): void } | null = null;
+
+    let lenis: import("lenis").default | null = null;
+    // typed ref so we can remove the exact same function from GSAP ticker
+    let gsapRaf: ((time: number) => void) | null = null;
+
     const initLenis = async () => {
       try {
-        const LenisModule = await import("@studio-freight/lenis");
-        const LenisClass = LenisModule.default;
-        lenis = new LenisClass({ duration: 1.4, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), orientation: "vertical" as const, gestureOrientation: "vertical" as const, smoothWheel: true });
-        const raf = (time: number) => { (lenis as any).raf(time); requestAnimationFrame(raf); };
-        requestAnimationFrame(raf);
-      } catch { /* native scroll */ }
+        const [LenisModule, gsapModule] = await Promise.all([
+          import("lenis"),
+          import("gsap"),
+        ]);
+        const Lenis = LenisModule.default;
+        const gsap = gsapModule.gsap;
+
+        lenis = new Lenis({
+          lerp: 0.08,            // lower = snappier response (default 0.1)
+          smoothWheel: true,
+          wheelMultiplier: 1,
+          touchMultiplier: 1.5,
+          anchors: true,         // lets nav href="#section" links work
+          overscroll: false,
+        });
+
+        // Drive Lenis through GSAP's optimized ticker — no duplicate RAF loops
+        gsapRaf = (time: number) => { lenis!.raf(time * 1000); };
+        gsap.ticker.add(gsapRaf);
+        gsap.ticker.lagSmoothing(0); // prevent GSAP lag compensation interfering
+      } catch { /* fall back to native scroll */ }
     };
+
     initLenis();
-    return () => { lenis?.destroy(); };
+    return () => {
+      if (gsapRaf) {
+        // dynamically import so cleanup mirrors init
+        import("gsap").then(({ gsap }) => gsap.ticker.remove(gsapRaf!)).catch(() => {});
+      }
+      lenis?.destroy();
+    };
   }, [contentVisible]);
 
   const handlePreloaderComplete = () => { setShowPreloader(false); setTimeout(() => setContentVisible(true), 300); };

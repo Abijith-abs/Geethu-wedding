@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "linear-gradient(180deg, #071E13, #040F09)",
+        background: "linear-gradient(180deg, #1E1510, #120C08)",
         padding: "80px 20px 40px",
         position: "relative",
         overflow: "hidden",
@@ -30,7 +30,7 @@ export default function Footer() {
       {/* Subtle top border */}
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 2,
-        background: "linear-gradient(90deg, transparent, #C9972C 30%, #1B5538 50%, #C9972C 70%, transparent)",
+        background: "linear-gradient(90deg, transparent, #C9972C 30%, #C4786A 50%, #C9972C 70%, transparent)",
       }} />
 
       {/* Kolam background decoration */}

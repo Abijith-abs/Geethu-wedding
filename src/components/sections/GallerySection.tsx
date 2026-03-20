@@ -56,7 +56,7 @@ export default function GallerySection() {
       id="gallery"
       style={{
         padding: "100px 20px",
-        background: "#EEF5EE",
+        background: "#FFF5EE",
         position: "relative",
         overflow: "hidden",
       }}
@@ -77,7 +77,7 @@ export default function GallerySection() {
               fontFamily: "var(--font-cormorant, serif)",
               fontSize: "clamp(36px, 6vw, 64px)",
               fontWeight: 300,
-              color: "#0D3D24",
+              color: "#9E5A4E",
             }}
           >
             A Glimpse of
@@ -129,7 +129,7 @@ export default function GallerySection() {
                     />
                     <div className="gallery-overlay" style={{
                       position: "absolute", inset: 0,
-                      background: "linear-gradient(to top, rgba(10,51,34,0.7) 0%, transparent 50%)",
+                      background: "linear-gradient(to top, rgba(158,90,78,0.7) 0%, transparent 50%)",
                       opacity: 0, transition: "opacity 0.3s",
                       display: "flex", flexDirection: "column",
                       justifyContent: "flex-end", padding: 14,
