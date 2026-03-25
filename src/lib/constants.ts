@@ -34,7 +34,7 @@ export const WEDDING = {
   },
   wedding: {
     date: "April 16, 2026",
-    day: "Wednesday",
+    day: "Thursday",
     dateISO: "2026-04-16T11:00:00",
     muhurthamStart: "11:00 AM",
     muhurthamEnd: "11:45 AM",
