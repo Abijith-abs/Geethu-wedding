@@ -51,8 +51,10 @@ export const WEDDING = {
   },
   complimentsFrom: ["Neethu V", "Akhil A", "Daksha"],
   music: {
-    url: "",
-    title: "Chenda Melam Blessing",
+    url: "/sita-kalyanam.mpeg",
+    title: "Sita Kalyanam",
+    startFrom: 44,
+    volume: 0.46,
   },
 };
 
