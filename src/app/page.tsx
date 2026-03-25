@@ -10,13 +10,8 @@ import FloatingPetals from "@/components/shared/FloatingPetals";
 
 import Hero from "@/components/sections/Hero";
 import CoupleSection from "@/components/sections/CoupleSection";
-import StoryTimeline from "@/components/sections/StoryTimeline";
 import EventsSection from "@/components/sections/EventsSection";
 import VenueSection from "@/components/sections/VenueSection";
-import GallerySection from "@/components/sections/GallerySection";
-import RSVPSection from "@/components/sections/RSVPSection";
-import ItinerarySection from "@/components/sections/ItinerarySection";
-import GiftSection from "@/components/sections/GiftSection";
 import Footer from "@/components/sections/Footer";
 
 const Preloader = dynamic(() => import("@/components/shared/Preloader"), { ssr: false });
@@ -80,13 +75,8 @@ export default function Home() {
             <main>
               <Hero />
               <CoupleSection />
-              <StoryTimeline />
               <EventsSection />
               <VenueSection />
-              <GallerySection />
-              <RSVPSection />
-              <ItinerarySection />
-              <GiftSection />
             </main>
             <Footer />
             <MusicPlayer />

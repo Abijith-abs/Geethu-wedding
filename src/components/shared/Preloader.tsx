@@ -148,15 +148,16 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           Together with their families
         </div>
 
-        {/* Malayalam names */}
+        {/* Auspicious sub text */}
         <div className="pre-sub" style={{
-          fontFamily: "var(--font-malayalam, serif)",
-          fontSize: "clamp(14px, 2.8vw, 18px)",
+          fontFamily: "var(--font-cormorant, serif)",
+          fontStyle: "italic",
+          fontSize: "clamp(13px, 2.5vw, 16px)",
           color: "#B89A88",
           letterSpacing: 3,
           marginBottom: 20,
         }}>
-          {WEDDING.bride.tamilName} &amp; {WEDDING.groom.tamilName}
+          {WEDDING.wedding.day}, {WEDDING.wedding.date}
         </div>
 
         {/* Couple names */}
@@ -209,7 +210,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           color: "#B89A88",
           marginBottom: 34,
         }}>
-          February 14, 2027 &nbsp;·&nbsp; Ernakulam, Kerala
+          {WEDDING.wedding.muhurthamStart} – {WEDDING.wedding.muhurthamEnd} &nbsp;·&nbsp; {WEDDING.wedding.venue.city}, Kerala
         </div>
 
         {/* Enter button */}

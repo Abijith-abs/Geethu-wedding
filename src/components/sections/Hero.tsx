@@ -329,12 +329,13 @@ export default function Hero() {
 
         {/* Malayalam names */}
         <div className="hero-malayalam" style={{
-          fontFamily: "var(--font-malayalam, serif)",
+          fontFamily: "var(--font-cormorant, serif)",
           fontSize: "clamp(13px, 2.4vw, 19px)",
           color: "rgba(201,151,44,0.5)",
           letterSpacing: 3, marginTop: 22,
+          fontStyle: "italic",
         }}>
-          {WEDDING.bride.tamilName} &amp; {WEDDING.groom.tamilName}
+          {WEDDING.wedding.day} &nbsp;&middot;&nbsp; {WEDDING.wedding.date}
         </div>
 
         {/* Gold divider */}
@@ -368,12 +369,14 @@ export default function Hero() {
           </div>
           <div style={{
             fontSize: 10, letterSpacing: 4, textTransform: "uppercase",
-            color: "rgba(255,253,208,0.45)", lineHeight: 2,
+            color: "rgba(255,253,208,0.5)", lineHeight: 2,
           }}>
-            {WEDDING.wedding.venue.name}
+            Muhurtham · {WEDDING.wedding.muhurthamStart} – {WEDDING.wedding.muhurthamEnd}
           </div>
-          <div style={{ fontSize: 10, letterSpacing: 3, color: "rgba(255,253,208,0.3)" }}>
-            {WEDDING.wedding.venue.city}
+          <div style={{
+            fontSize: 10, letterSpacing: 3, color: "rgba(255,253,208,0.35)", marginTop: 4,
+          }}>
+            {WEDDING.wedding.venue.name} · {WEDDING.wedding.venue.city}
           </div>
         </div>
 

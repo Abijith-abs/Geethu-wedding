@@ -1,16 +1,13 @@
 ﻿"use client";
 
 import { motion } from "framer-motion";
-import { WEDDING, hashtag } from "@/lib/constants";
+import { WEDDING } from "@/lib/constants";
 import { KolamSVG, OmSymbol } from "@/components/svg/Decoratives";
 
 const NAV_LINKS = [
   { label: "Couple", href: "#couple" },
-  { label: "Story", href: "#story" },
-  { label: "Events", href: "#events" },
+  { label: "Event", href: "#events" },
   { label: "Venue", href: "#venue" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "RSVP", href: "#rsvp" },
 ];
 
 export default function Footer() {
@@ -27,13 +24,13 @@ export default function Footer() {
         textAlign: "center",
       }}
     >
-      {/* Subtle top border */}
+      {/* Top border */}
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 2,
         background: "linear-gradient(90deg, transparent, #C9972C 30%, #C4786A 50%, #C9972C 70%, transparent)",
       }} />
 
-      {/* Kolam background decoration */}
+      {/* Kolam background */}
       <div style={{
         position: "absolute", left: "50%", top: "50%",
         transform: "translate(-50%, -50%) scale(3)",
@@ -42,7 +39,7 @@ export default function Footer() {
         <KolamSVG />
       </div>
 
-      <div style={{ maxWidth: 700, margin: "0 auto", position: "relative", zIndex: 1 }}>
+      <div style={{ maxWidth: 760, margin: "0 auto", position: "relative", zIndex: 1 }}>
         {/* Om symbol */}
         <motion.div
           initial={{ opacity: 0, scale: 0.7 }}
@@ -54,7 +51,7 @@ export default function Footer() {
           <OmSymbol />
         </motion.div>
 
-        {/* Monogram */}
+        {/* Couple names monogram */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,49 +59,110 @@ export default function Footer() {
           transition={{ duration: 0.8, delay: 0.1 }}
           style={{
             fontFamily: "var(--font-great-vibes, cursive)",
-            fontSize: "clamp(52px, 10vw, 88px)",
+            fontSize: "clamp(48px, 10vw, 86px)",
             color: "#C9972C",
             lineHeight: 1,
             margin: "0 0 8px",
           }}
         >
-          Kichu &amp; Dathan
+          {WEDDING.bride.firstName} &amp; {WEDDING.groom.firstName}
         </motion.h2>
-
-        {/* Hashtag */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          style={{
-            fontSize: 13, letterSpacing: 4,
-            color: "rgba(201,151,44,0.6)",
-            textTransform: "uppercase",
-            fontFamily: "var(--font-jost, sans-serif)",
-            marginBottom: 12,
-          }}
-        >
-          #{hashtag.replace("#", "")}
-        </motion.p>
 
         {/* Date */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.35 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
           style={{
-            fontSize: 16,
+            fontSize: 14,
             fontFamily: "var(--font-cormorant, serif)",
             color: "rgba(255,253,208,0.5)",
+            marginBottom: 8,
+            letterSpacing: 2,
+          }}
+        >
+          {WEDDING.wedding.day}, {WEDDING.wedding.date}
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.32 }}
+          style={{
+            fontSize: 12, letterSpacing: 4,
+            color: "rgba(201,151,44,0.5)",
+            textTransform: "uppercase",
             marginBottom: 48,
           }}
         >
-          {WEDDING.wedding.date} · {WEDDING.wedding.venue.city}
+          {WEDDING.wedding.venue.name} · {WEDDING.wedding.venue.city}
         </motion.p>
 
-        {/* Kolam dot nav */}
+        {/* Compliments from section */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          style={{
+            marginBottom: 48,
+            padding: "28px 32px",
+            border: "1px solid rgba(201,151,44,0.2)",
+            borderRadius: 8,
+            background: "rgba(201,151,44,0.04)",
+          }}
+        >
+          <div style={{
+            fontSize: 9, letterSpacing: 5, textTransform: "uppercase",
+            color: "rgba(201,151,44,0.6)", marginBottom: 16,
+          }}>
+            With Love &amp; Compliments from
+          </div>
+          <div style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: "clamp(20px, 4vw, 40px)",
+            flexWrap: "wrap",
+          }}>
+            {WEDDING.complimentsFrom.map((name, i) => (
+              <motion.div
+                key={name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 + i * 0.12 }}
+                style={{ textAlign: "center" }}
+              >
+                {/* Dot cluster */}
+                <div style={{
+                  display: "grid", gridTemplateColumns: "repeat(3, 5px)",
+                  gap: 3, margin: "0 auto 8px", width: "fit-content",
+                }}>
+                  {Array.from({ length: 9 }).map((_, j) => (
+                    <div key={j} style={{
+                      width: 5, height: 5, borderRadius: "50%",
+                      background: j === 4 ? "#C9972C" : "rgba(201,151,44,0.3)",
+                      boxShadow: j === 4 ? "0 0 5px rgba(201,151,44,0.6)" : "none",
+                    }} />
+                  ))}
+                </div>
+                <span style={{
+                  fontFamily: "var(--font-cormorant, serif)",
+                  fontSize: "clamp(14px, 2.5vw, 18px)",
+                  color: "rgba(255,253,208,0.75)",
+                  fontStyle: "italic",
+                  letterSpacing: 1,
+                }}>
+                  {name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Nav links */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -112,45 +170,30 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.4 }}
           style={{
             display: "flex", justifyContent: "center",
-            gap: "clamp(12px, 3vw, 28px)", flexWrap: "wrap",
-            marginBottom: 48,
+            gap: "clamp(16px, 4vw, 36px)", flexWrap: "wrap",
+            marginBottom: 40,
           }}
         >
-          {NAV_LINKS.map((link, i) => (
+          {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               style={{
-                display: "flex", flexDirection: "column",
-                alignItems: "center", gap: 6,
-                textDecoration: "none",
-              }}
-            >
-              {/* Kolam dot cluster */}
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 4px)", gap: 2 }}>
-                {Array.from({ length: 9 }).map((_, j) => (
-                  <div key={j} style={{
-                    width: 4, height: 4, borderRadius: "50%",
-                    background: j === 4 ? "#C9972C" : "rgba(201,151,44,0.3)",
-                    boxShadow: j === 4 ? "0 0 4px rgba(201,151,44,0.6)" : "none",
-                  }} />
-                ))}
-              </div>
-              <span style={{
-                fontSize: 9, letterSpacing: 2,
-                textTransform: "uppercase",
+                fontSize: 10, letterSpacing: 3, textTransform: "uppercase",
                 color: "rgba(201,151,44,0.5)",
                 fontFamily: "var(--font-jost, sans-serif)",
-              }}>
-                {link.label}
-              </span>
+                textDecoration: "none",
+                transition: "color 0.3s",
+              }}
+            >
+              {link.label}
             </a>
           ))}
         </motion.div>
 
         {/* Divider */}
         <div style={{
-          height: 1, margin: "0 auto 32px",
+          height: 1, margin: "0 auto 28px",
           maxWidth: 300,
           background: "linear-gradient(90deg, transparent, rgba(201,151,44,0.3), transparent)",
         }} />
@@ -162,7 +205,7 @@ export default function Footer() {
           color: "rgba(201,151,44,0.7)",
           marginBottom: 8,
         }}>
-          Made with love by the families of Kichu &amp; Dathan
+          Made with love &mdash; {WEDDING.bride.firstName} &amp; {WEDDING.groom.firstName}
         </p>
 
         <p style={{
@@ -171,7 +214,7 @@ export default function Footer() {
           fontFamily: "var(--font-jost, sans-serif)",
           marginBottom: 32,
         }}>
-          © {year} · All rights reserved
+          &copy; {year} · All rights reserved
         </p>
 
         {/* Back to top */}

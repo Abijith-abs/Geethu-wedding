@@ -17,7 +17,7 @@ export default function Navbar() {
       setProgress(totalHeight > 0 ? (scrollY / totalHeight) * 100 : 0);
 
       // Detect active section
-      const sections = ["hero", "story", "events", "venue", "gallery", "rsvp"];
+      const sections = ["hero", "couple", "events", "venue"];
       for (const id of sections.reverse()) {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= 100) {
@@ -114,26 +114,6 @@ export default function Navbar() {
               </li>
             );
           })}
-          <li>
-            <button
-              onClick={() => scrollTo("#rsvp")}
-              style={{
-                padding: "8px 20px",
-                border: "1px solid rgba(201,151,44,0.6)",
-                borderRadius: 2,
-                fontSize: 9,
-                letterSpacing: 4,
-                textTransform: "uppercase",
-                color: scrolled ? "var(--maroon-dark)" : "#C9972C",
-                background: scrolled ? "rgba(201,151,44,0.1)" : "transparent",
-                fontFamily: "var(--font-jost, sans-serif)",
-                cursor: "pointer",
-                transition: "all 0.3s",
-              }}
-            >
-              RSVP
-            </button>
-          </li>
         </ul>
 
         {/* Hamburger */}
@@ -207,7 +187,7 @@ export default function Navbar() {
           pointerEvents: "none",
         }} />
 
-        {[...NAV_LINKS, { label: "RSVP", href: "#rsvp" }].map(({ label, href }, i) => (
+          {NAV_LINKS.map(({ label, href }, i) => (
           <button
             key={href}
             onClick={() => scrollTo(href)}
@@ -233,13 +213,13 @@ export default function Navbar() {
         ))}
 
         <div style={{ fontSize: 12, color: "rgba(201,151,44,0.5)", letterSpacing: 4, marginTop: 8 }}>
-          #KichuWedsDathan
+          {WEDDING.wedding.date}
         </div>
       </div>
 
       {/* Side dots navigation */}
       <nav className="side-dots" aria-label="Section navigation dots">
-        {["hero", "story", "events", "venue", "gallery", "rsvp"].map(id => (
+        {["hero", "couple", "events", "venue"].map(id => (
           <button
             key={id}
             className={`side-dot ${activeSection === id ? "active" : ""}`}

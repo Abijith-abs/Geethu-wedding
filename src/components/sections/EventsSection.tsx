@@ -1,191 +1,23 @@
 ﻿"use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { EVENTS } from "@/lib/constants";
-import { MandalaDivider, OrnamentalCorner } from "@/components/svg/Decoratives";
-import { staggerContainer, staggerItem } from "@/lib/animations";
-
-function EventCard({ event, index }: { event: typeof EVENTS[0]; index: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [flipped, setFlipped] = useState(false);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 60, rotateY: -15 }}
-      animate={inView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: index * 0.12 }}
-      style={{
-        width: "100%",
-        maxWidth: 360,
-        height: 440,
-        perspective: 1200,
-        cursor: "pointer",
-        position: "relative",
-      }}
-      className="event-card"
-      onClick={() => setFlipped(!flipped)}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
-    >
-      <div className="event-card-inner" style={{
-        width: "100%", height: "100%",
-        transformStyle: "preserve-3d",
-        transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-        transition: "transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-      }}>
-        {/* FRONT */}
-        <div className="event-card-front" style={{
-          position: "absolute", inset: 0,
-          background: event.isPrimary
-            ? `linear-gradient(135deg, #9E5A4E, #C4786A, #D4957F)`
-            : `linear-gradient(135deg, #FAF7F3, #FFFBF7)`,
-          border: event.isPrimary ? "2px solid #C9972C" : "1px solid rgba(201,151,44,0.3)",
-          borderRadius: 6,
-          padding: "32px 28px",
-          display: "flex", flexDirection: "column",
-          alignItems: "center", textAlign: "center",
-          boxShadow: event.isPrimary
-            ? "0 8px 50px rgba(196,120,106,0.4), 0 0 30px rgba(201,151,44,0.2)"
-            : "0 4px 30px rgba(196,120,106,0.08)",
-          overflow: "hidden",
-        }}>
-          {/* Ornamental corners */}
-          <OrnamentalCorner position="tl" size={40} />
-          <OrnamentalCorner position="tr" size={40} />
-          <OrnamentalCorner position="bl" size={40} />
-          <OrnamentalCorner position="br" size={40} />
-
-          {/* Background pattern */}
-          <div style={{
-            position: "absolute", inset: 0, opacity: event.isPrimary ? 0.06 : 0.04,
-            backgroundImage: `repeating-linear-gradient(45deg, ${event.color} 0, ${event.color} 1px, transparent 0, transparent 50%)`,
-            backgroundSize: "20px 20px",
-            pointerEvents: "none",
-          }} />
-
-          {event.isPrimary && (
-            <div style={{
-              fontSize: 9, letterSpacing: 5, textTransform: "uppercase",
-              color: "#FFD700", marginBottom: 8, opacity: 0.9,
-            }}>
-              ✦ Main Ceremony ✦
-            </div>
-          )}
-
-          <div style={{ fontSize: 40, marginBottom: 12 }}>{event.icon}</div>
-
-          <div style={{
-            fontFamily: "var(--font-malayalam, serif)",
-            fontSize: 16, color: event.isPrimary ? "#C9972C" : "#C4786A",
-            marginBottom: 4, letterSpacing: 2,
-          }}>
-            {event.tamilName}
-          </div>
-
-          <h3 style={{
-            fontFamily: "var(--font-cormorant, serif)",
-            fontSize: "clamp(22px, 3vw, 28px)",
-            fontWeight: 500,
-            color: event.isPrimary ? "#FFFBF7" : "#9E5A4E",
-            marginBottom: 6,
-          }}>
-            {event.name}
-          </h3>
-
-          <div style={{
-            fontSize: 11, letterSpacing: 2, textTransform: "uppercase",
-            color: event.isPrimary ? "rgba(255,253,208,0.6)" : "var(--text-light)",
-            marginBottom: 20,
-          }}>
-            {event.subtitle}
-          </div>
-
-          <div style={{
-            width: 40, height: 1,
-            background: event.isPrimary ? "rgba(201,151,44,0.6)" : "rgba(196,120,106,0.2)",
-            margin: "0 auto 20px",
-          }} />
-
-          <div style={{
-            fontFamily: "var(--font-cormorant, serif)",
-            fontSize: 18,
-            color: event.isPrimary ? "#C9972C" : "#C4786A",
-            letterSpacing: 1, marginBottom: 4,
-          }}>
-            {event.date}
-          </div>
-          <div style={{
-            fontSize: 13, color: event.isPrimary ? "rgba(255,253,208,0.7)" : "var(--text-medium)",
-          }}>
-            {event.time}
-          </div>
-
-          <div style={{
-            marginTop: "auto",
-            fontSize: 11, color: event.isPrimary ? "rgba(255,253,208,0.5)" : "var(--text-light)",
-            letterSpacing: 2, textTransform: "uppercase",
-          }}>
-            Hover or tap for details
-          </div>
-        </div>
-
-        {/* BACK */}
-        <div className="event-card-back" style={{
-          position: "absolute", inset: 0,
-          background: `linear-gradient(135deg, ${event.color}22, #FAF7F3)`,
-          border: `1px solid ${event.color}55`,
-          borderRadius: 6,
-          padding: "28px 24px",
-          display: "flex", flexDirection: "column",
-          alignItems: "flex-start", textAlign: "left",
-          boxShadow: `0 8px 40px ${event.color}33`,
-          overflow: "hidden",
-        }}>
-          <OrnamentalCorner position="tl" size={36} />
-          <OrnamentalCorner position="tr" size={36} />
-
-          <div style={{ fontSize: 24, marginBottom: 8 }}>{event.icon}</div>
-          <h3 style={{
-            fontFamily: "var(--font-cormorant, serif)",
-            fontSize: 22, fontWeight: 500,
-            color: "#9E5A4E", marginBottom: 14,
-          }}>
-            {event.name}
-          </h3>
-
-          <p style={{ fontSize: 13, lineHeight: 1.8, color: "var(--text-medium)", marginBottom: 16 }}>
-            {event.description}
-          </p>
-
-          <div style={{
-            width: "100%", height: 1,
-            background: `linear-gradient(90deg, ${event.color}55, transparent)`,
-            margin: "8px 0 14px",
-          }} />
-
-          {[
-            { icon: "📅", label: event.date },
-            { icon: "⏰", label: event.time },
-            { icon: "📍", label: event.venue },
-            { icon: "👗", label: event.dresscode },
-          ].map(({ icon, label }) => (
-            <div key={icon} style={{ display: "flex", gap: 8, marginBottom: 8, fontSize: 12, color: "var(--text-medium)" }}>
-              <span>{icon}</span>
-              <span style={{ lineHeight: 1.5 }}>{label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+import { WEDDING } from "@/lib/constants";
+import { MandalaDivider, OrnamentalCorner, KuthuvilakkuSVG } from "@/components/svg/Decoratives";
+import { staggerContainer, staggerItem, fadeUp } from "@/lib/animations";
 
 export default function EventsSection() {
   const titleRef = useRef(null);
   const titleInView = useInView(titleRef, { once: true, margin: "-80px" });
+  const cardRef = useRef(null);
+  const cardInView = useInView(cardRef, { once: true, margin: "-60px" });
+
+  const details = [
+    { icon: "📅", label: "Date", value: `${WEDDING.wedding.day}, ${WEDDING.wedding.date}` },
+    { icon: "🕐", label: "Muhurtham", value: `${WEDDING.wedding.muhurthamStart} – ${WEDDING.wedding.muhurthamEnd}` },
+    { icon: "📍", label: "Venue", value: WEDDING.wedding.venue.name },
+    { icon: "🗺️", label: "Location", value: WEDDING.wedding.venue.city },
+  ];
 
   return (
     <section
@@ -197,7 +29,7 @@ export default function EventsSection() {
         overflow: "hidden",
       }}
     >
-      {/* Decorative band */}
+      {/* Decorative top/bottom bands */}
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 4,
         background: "linear-gradient(90deg, var(--maroon), var(--gold), var(--vermillion), var(--gold), var(--maroon))",
@@ -207,7 +39,14 @@ export default function EventsSection() {
         background: "linear-gradient(90deg, var(--maroon), var(--gold), var(--vermillion), var(--gold), var(--maroon))",
       }} />
 
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      {/* Background pattern */}
+      <div style={{
+        position: "absolute", inset: 0, opacity: 0.025, pointerEvents: "none",
+        backgroundImage: "repeating-linear-gradient(45deg, #C9972C 0, #C9972C 1px, transparent 0, transparent 40%)",
+        backgroundSize: "18px 18px",
+      }} />
+
+      <div style={{ maxWidth: 900, margin: "0 auto" }}>
         {/* Header */}
         <motion.div
           ref={titleRef}
@@ -216,7 +55,7 @@ export default function EventsSection() {
           variants={staggerContainer}
           style={{ textAlign: "center", marginBottom: 60 }}
         >
-          <motion.span variants={staggerItem} className="section-tag">Wedding Celebrations</motion.span>
+          <motion.span variants={staggerItem} className="section-tag">Wedding Ceremony</motion.span>
           <motion.h2
             variants={staggerItem}
             style={{
@@ -226,54 +65,188 @@ export default function EventsSection() {
               color: "#9E5A4E",
             }}
           >
-            Five Days of<br />
-            <em style={{ fontStyle: "italic", color: "#C9972C" }}>Sacred Celebrations</em>
+            The Auspicious<br />
+            <em style={{ fontStyle: "italic", color: "#C9972C" }}>Vivaha Muhurtham</em>
           </motion.h2>
-          <motion.div variants={staggerItem}>
-            <MandalaDivider />
-          </motion.div>
-          <motion.p
-            variants={staggerItem}
-            style={{ fontSize: 14, color: "var(--text-medium)", maxWidth: 500, margin: "0 auto" }}
-          >
-            A South Indian wedding is not a ceremony — it is a beautiful, multi-day tapestry of rituals, music, colour and love.
-          </motion.p>
+          <motion.div variants={staggerItem}><MandalaDivider /></motion.div>
         </motion.div>
 
-        {/* Cards grid */}
-        <div style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 24,
-          justifyContent: "center",
-          alignItems: "flex-start",
-        }}>
-          {EVENTS.map((event, i) => (
-            <EventCard key={event.id} event={event} index={i} />
-          ))}
-        </div>
+        {/* Main event card */}
+        <motion.div
+          ref={cardRef}
+          initial={{ opacity: 0, y: 60, scale: 0.97 }}
+          animate={cardInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            background: "linear-gradient(135deg, #9E5A4E 0%, #C4786A 45%, #D4957F 100%)",
+            borderRadius: 12,
+            padding: "60px 50px",
+            position: "relative",
+            overflow: "hidden",
+            boxShadow: "0 20px 80px rgba(196,120,106,0.4), 0 0 40px rgba(201,151,44,0.2)",
+            border: "2px solid rgba(201,151,44,0.5)",
+            textAlign: "center",
+          }}
+        >
+          {/* Ornamental corners */}
+          <OrnamentalCorner position="tl" size={56} />
+          <OrnamentalCorner position="tr" size={56} />
+          <OrnamentalCorner position="bl" size={56} />
+          <OrnamentalCorner position="br" size={56} />
 
-        {/* Dress code note */}
+          {/* Background texture */}
+          <div style={{
+            position: "absolute", inset: 0, opacity: 0.07,
+            backgroundImage: "repeating-linear-gradient(45deg, #C9972C 0, #C9972C 1px, transparent 0, transparent 50%)",
+            backgroundSize: "20px 20px",
+            pointerEvents: "none",
+          }} />
+
+          {/* Top badge */}
+          <div style={{
+            fontSize: 9, letterSpacing: 6, textTransform: "uppercase",
+            color: "#FFD700", marginBottom: 24, opacity: 0.9,
+          }}>
+            ✦ Main Ceremony ✦
+          </div>
+
+          {/* Oil lamp icon */}
+          <div style={{
+            display: "flex", justifyContent: "center", marginBottom: 24,
+            animation: "floatGentle 4s ease-in-out infinite",
+          }}>
+            <KuthuvilakkuSVG size={60} />
+          </div>
+
+          {/* Malayalam text */}
+          <div style={{
+            fontFamily: "var(--font-malayalam, serif)",
+            fontSize: "clamp(14px, 2vw, 20px)",
+            color: "rgba(201,151,44,0.85)",
+            marginBottom: 8, letterSpacing: 3,
+          }}>
+            വിവാഹ മുഹൂർത്തം
+          </div>
+
+          {/* Event name */}
+          <h2 style={{
+            fontFamily: "var(--font-cormorant, serif)",
+            fontSize: "clamp(32px, 5vw, 56px)",
+            fontWeight: 400,
+            color: "#FFFBF7",
+            marginBottom: 8,
+            lineHeight: 1.1,
+            letterSpacing: 2,
+          }}>
+            Vivaha Muhurtham
+          </h2>
+
+          {/* Subtitle */}
+          <div style={{
+            fontSize: 11, letterSpacing: 4, textTransform: "uppercase",
+            color: "rgba(255,253,208,0.65)", marginBottom: 32,
+          }}>
+            The Sacred Wedding Ceremony
+          </div>
+
+          {/* Gold divider */}
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "center",
+            gap: 16, marginBottom: 40,
+          }}>
+            <div style={{ flex: 1, maxWidth: 120, height: 1, background: "linear-gradient(90deg, transparent, rgba(201,151,44,0.7))" }} />
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="3" fill="#C9972C" opacity="0.8" />
+              {[0, 72, 144, 216, 288].map(deg => {
+                const r = deg * Math.PI / 180;
+                return <circle key={deg} cx={8 + 6 * Math.cos(r)} cy={8 + 6 * Math.sin(r)} r="1.5" fill="#C9972C" opacity="0.5" />;
+              })}
+            </svg>
+            <div style={{ flex: 1, maxWidth: 120, height: 1, background: "linear-gradient(90deg, rgba(201,151,44,0.7), transparent)" }} />
+          </div>
+
+          {/* Detail grid */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+            gap: 20,
+            maxWidth: 700,
+            margin: "0 auto 40px",
+          }}>
+            {details.map(({ icon, label, value }, idx) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={cardInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 + idx * 0.1 }}
+                style={{
+                  padding: "18px 16px",
+                  background: "rgba(0,0,0,0.15)",
+                  borderRadius: 8,
+                  border: "1px solid rgba(201,151,44,0.2)",
+                  backdropFilter: "blur(4px)",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ fontSize: 22, marginBottom: 8 }}>{icon}</div>
+                <div style={{
+                  fontSize: 9, letterSpacing: 3, textTransform: "uppercase",
+                  color: "rgba(201,151,44,0.7)", marginBottom: 6,
+                }}>
+                  {label}
+                </div>
+                <div style={{
+                  fontFamily: "var(--font-cormorant, serif)",
+                  fontSize: 15, fontWeight: 400,
+                  color: "#FFFBF7",
+                  lineHeight: 1.4,
+                }}>
+                  {value}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Invitation note */}
+          <div style={{
+            padding: "20px 24px",
+            background: "rgba(0,0,0,0.12)",
+            borderRadius: 8,
+            border: "1px solid rgba(201,151,44,0.25)",
+            maxWidth: 540,
+            margin: "0 auto",
+          }}>
+            <p style={{
+              fontFamily: "var(--font-cormorant, serif)",
+              fontSize: "clamp(14px, 1.8vw, 18px)",
+              fontStyle: "italic",
+              color: "rgba(255,253,208,0.85)",
+              lineHeight: 1.9,
+            }}>
+              &ldquo;The most auspicious moment — two souls united under divine blessings. Witness the sacred union with your gracious presence.&rdquo;
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Attire note */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           style={{
-            textAlign: "center", marginTop: 50,
+            textAlign: "center", marginTop: 40,
             padding: "20px 30px",
             background: "rgba(201,151,44,0.06)",
             border: "1px solid rgba(201,151,44,0.2)",
-            borderRadius: 4,
-            maxWidth: 600,
-            margin: "50px auto 0",
+            borderRadius: 8,
             fontSize: 13,
             color: "var(--text-medium)",
             lineHeight: 1.8,
           }}
         >
-          <strong style={{ color: "#9E5A4E" }}>Dress Code Note: </strong>
-          Traditional South Indian attire is warmly encouraged. Kanchipuram silk sarees and veshtis honour the sanctity of the occasion.
+          <strong style={{ color: "#9E5A4E" }}>Traditional Attire Encouraged — </strong>
+          Kasavu sarees &amp; mundu honour the sanctity of this auspicious occasion.
         </motion.div>
       </div>
     </section>

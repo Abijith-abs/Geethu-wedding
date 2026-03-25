@@ -40,31 +40,22 @@ const notoSerifMalayalam = Noto_Serif_Malayalam({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kichu-weds-dathan.vercel.app"),
-  title: "Kichu Weds Dathan | February 14, 2027",
+  metadataBase: new URL("https://geethu-weds-mahesh.vercel.app"),
+  title: "Geethu Weds Mahesh | April 16, 2026",
   description:
-    "Join us as Kichu & Dathan celebrate their sacred union on February 14, 2027 in Ernakulam, Kerala. #KichuWedsDathan",
-  keywords: ["wedding", "Kerala wedding", "Kichu", "Dathan", "Ernakulam", "Kochi wedding invitation"],
-  authors: [{ name: "Kichu & Dathan" }],
+    "Join us as Geethu & Mahesh celebrate their sacred union on April 16, 2026 at Mannorkkavu Vanadurgga Auditorium, Mynagappally, Kerala.",
+  keywords: ["wedding", "Kerala wedding", "Geethu", "Mahesh", "Mynagappally", "Kollam wedding invitation"],
+  authors: [{ name: "Geethu & Mahesh" }],
   openGraph: {
-    title: "Kichu Weds Dathan 💍 | February 14, 2027",
-    description: "You are cordially invited to the sacred union of Kichu & Dathan — February 14, 2027, Ernakulam, Kerala.",
+    title: "Geethu Weds Mahesh 🪔 | April 16, 2026",
+    description: "You are cordially invited to the sacred union of Geethu & Mahesh — April 16, 2026, Mynagappally, Kerala.",
     type: "website",
     locale: "en_IN",
-    images: [
-      {
-        url: "/gallery/photo-1.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Kichu & Dathan Wedding Invitation",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kichu Weds Dathan 💍",
-    description: "A grand Kerala wedding celebration. February 14, 2027 | Ernakulam, Kerala",
-    images: ["/gallery/photo-1.jpg"],
+    title: "Geethu Weds Mahesh 🪔",
+    description: "A grand Kerala wedding celebration. April 16, 2026 | Mynagappally, Kerala",
   },
   icons: {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪔</text></svg>",

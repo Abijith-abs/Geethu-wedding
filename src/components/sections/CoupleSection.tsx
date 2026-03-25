@@ -2,39 +2,33 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
 import { WEDDING } from "@/lib/constants";
 import { MandalaDivider, OrnamentalCorner } from "@/components/svg/Decoratives";
-import { fadeUp, slideLeft, slideRight, staggerContainer, staggerItem } from "@/lib/animations";
+import { slideLeft, slideRight, staggerContainer, staggerItem } from "@/lib/animations";
 
-function NakshatraStars({ count = 6 }: { count?: number }) {
-  return (
-    <div style={{ position: "relative", height: 40, display: "flex", alignItems: "center", justifyContent: "center", gap: 4 }}>
-      {Array.from({ length: count }, (_, i) => (
-        <div key={i} style={{
-          width: i === Math.floor(count / 2) ? 8 : 5,
-          height: i === Math.floor(count / 2) ? 8 : 5,
-          borderRadius: "50%",
-          background: i === Math.floor(count / 2) ? "#C9972C" : "rgba(201,151,44,0.4)",
-          animation: `glowPulse ${1 + i * 0.3}s ease-in-out infinite`,
-          animationDelay: `${i * 0.2}s`,
-        }} />
-      ))}
-    </div>
-  );
-}
-
-function PersonCard({
-  person,
+function FamilyCard({
+  title,
+  name,
+  father,
+  mother,
+  houseName,
+  place,
+  area,
+  phone,
   side,
-  parents,
 }: {
-  person: typeof WEDDING.bride | typeof WEDDING.groom;
+  title: string;
+  name: string;
+  father: string;
+  mother: string;
+  houseName: string;
+  place: string;
+  area: string;
+  phone?: string;
   side: "bride" | "groom";
-  parents: { father: string; mother: string };
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   const variant = side === "bride" ? slideLeft : slideRight;
 
   return (
@@ -48,132 +42,145 @@ function PersonCard({
         minWidth: 280,
         maxWidth: 420,
         textAlign: "center",
-        padding: "40px 20px",
         position: "relative",
+        background: "#FFFBF7",
+        borderRadius: 8,
+        overflow: "hidden",
+        boxShadow: "0 8px 50px rgba(196,120,106,0.1)",
       }}
     >
-      {/* Ornamental border lines */}
+      {/* Gradient top bar */}
       <div style={{
-        position: "absolute", inset: 0,
-        border: "1px solid rgba(201,151,44,0.15)",
-        borderRadius: 4,
-        pointerEvents: "none",
+        height: 5,
+        background: side === "bride"
+          ? "linear-gradient(90deg, #C4786A, #C9972C, #C4786A)"
+          : "linear-gradient(90deg, #C9972C, #C4786A, #C9972C)",
       }} />
+
+      {/* Ornamental corners */}
       <OrnamentalCorner position="tl" size={44} />
       <OrnamentalCorner position="tr" size={44} />
       <OrnamentalCorner position="bl" size={44} />
       <OrnamentalCorner position="br" size={44} />
 
-      {/* Role label */}
-      <div style={{
-        fontSize: 9, letterSpacing: 6, textTransform: "uppercase",
-        color: "#C9972C", opacity: 0.7, marginBottom: 20,
-      }}>
-        {side === "bride" ? "The Bride" : "The Groom"}
-      </div>
-
-      {/* Circular photo frame */}
-      <div style={{
-        width: 180, height: 180, borderRadius: "50%",
-        margin: "0 auto 24px",
-        position: "relative",
-        padding: 4,
-        background: "linear-gradient(135deg, #C9972C, #C4786A, #C9972C)",
-        animation: "glowPulse 3s ease-in-out infinite",
-      }}>
+      <div style={{ padding: "36px 28px 32px" }}>
+        {/* Role label */}
         <div style={{
-          width: "100%", height: "100%", borderRadius: "50%",
-          overflow: "hidden", position: "relative",
-          background: "#2c1a1a",
+          fontSize: 9, letterSpacing: 6, textTransform: "uppercase",
+          color: "#C9972C", opacity: 0.8, marginBottom: 20,
         }}>
-          <Image
-            src={person.photo}
-            alt={`${person.firstName} ${person.lastName}`}
-            fill
-            style={{ objectFit: "cover" }}
-            sizes="180px"
-          />
+          {title}
         </div>
-        {/* Gold ring orbiting decoration */}
+
+        {/* Decorative name ring */}
         <div style={{
-          position: "absolute", inset: -8, borderRadius: "50%",
-          border: "1px dashed rgba(201,151,44,0.3)",
-          animation: "spinSlow 20s linear infinite",
-        }} />
-        {/* Dot on the ring */}
+          width: 120, height: 120, borderRadius: "50%",
+          border: "2px solid rgba(201,151,44,0.3)",
+          margin: "0 auto 20px",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          position: "relative",
+          background: "linear-gradient(135deg, rgba(201,151,44,0.06), rgba(196,120,106,0.06))",
+        }}>
+          <div style={{
+            position: "absolute", inset: -8, borderRadius: "50%",
+            border: "1px dashed rgba(201,151,44,0.25)",
+            animation: "spinSlow 25s linear infinite",
+          }} />
+          <div style={{
+            position: "absolute", top: -4, left: "50%",
+            width: 8, height: 8, borderRadius: "50%",
+            background: "#C9972C",
+            transform: "translateX(-50%)",
+          }} />
+          <span style={{
+            fontFamily: "var(--font-great-vibes, cursive)",
+            fontSize: 52,
+            color: "#C4786A",
+            lineHeight: 1,
+          }}>
+            {name[0]}
+          </span>
+        </div>
+
+        {/* Name */}
+        <h2 style={{
+          fontFamily: "var(--font-cormorant, serif)",
+          fontSize: "clamp(28px, 4vw, 40px)",
+          fontWeight: 400,
+          color: "#9E5A4E",
+          letterSpacing: 2,
+          marginBottom: 6,
+          lineHeight: 1.1,
+        }}>
+          {name}
+        </h2>
+
+        {/* Gold divider */}
         <div style={{
-          position: "absolute", top: -4, left: "50%",
-          width: 8, height: 8, borderRadius: "50%",
-          background: "#C9972C",
-          transform: "translateX(-50%)",
+          width: 60, height: 1, margin: "14px auto 20px",
+          background: "linear-gradient(90deg, transparent, #C9972C, transparent)",
         }} />
-      </div>
 
-      {/* Name */}
-      <h2 style={{
-        fontFamily: "var(--font-cormorant, serif)",
-        fontSize: "clamp(28px, 4vw, 42px)",
-        fontWeight: 400,
-        color: "#9E5A4E",
-        letterSpacing: 2,
-        marginBottom: 4,
-      }}>
-        {person.firstName}
-      </h2>
-
-      {/* Malayalam name */}
-      <div style={{
-        fontFamily: "var(--font-malayalam, serif)",
-        fontSize: 16,
-        color: "#C9972C",
-        opacity: 0.8,
-        marginBottom: 8,
-        letterSpacing: 2,
-      }}>
-        {person.tamilName}
-      </div>
-
-      {/* Nakshatram */}
-      <NakshatraStars count={7} />
-      <div style={{ fontSize: 10, letterSpacing: 3, color: "var(--text-light)", textTransform: "uppercase", marginBottom: 4 }}>
-        {person.nakshatram} · {person.rashi}
-      </div>
-
-      {/* Bio with typewriter */}
-      <p style={{
-        fontSize: 13,
-        lineHeight: 1.8,
-        color: "var(--text-medium)",
-        maxWidth: 300,
-        margin: "16px auto 20px",
-        fontStyle: "italic",
-      }}>
-        &ldquo;{person.bio}&rdquo;
-      </p>
-
-      {/* Parents */}
-      <div style={{
-        padding: "14px 20px",
-        background: "rgba(201,151,44,0.06)",
-        borderTop: "1px solid rgba(201,151,44,0.15)",
-        borderRadius: "0 0 4px 4px",
-        marginTop: "auto",
-      }}>
-        <div style={{ fontSize: 9, letterSpacing: 4, textTransform: "uppercase", color: "#C9972C", marginBottom: 6 }}>
-          Daughter / Son of
+        {/* Parents */}
+        <div style={{
+          padding: "16px 18px",
+          background: "rgba(201,151,44,0.06)",
+          borderRadius: 6,
+          border: "1px solid rgba(201,151,44,0.12)",
+          marginBottom: 14,
+          textAlign: "left",
+        }}>
+          <div style={{ fontSize: 9, letterSpacing: 4, textTransform: "uppercase", color: "#C9972C", marginBottom: 8 }}>
+            {side === "bride" ? "Daughter of" : "Son of"}
+          </div>
+          <div style={{ fontSize: 13, color: "var(--text-medium)", lineHeight: 1.9 }}>
+            <span style={{ color: "#9E5A4E", fontWeight: 400 }}>{father}</span><br />
+            <span style={{ color: "#9E5A4E", fontWeight: 400 }}>&amp; {mother}</span>
+          </div>
         </div>
-        <div style={{ fontSize: 13, color: "var(--text-medium)", lineHeight: 1.6 }}>
-          {parents.father}<br />&amp; {parents.mother}
+
+        {/* Address */}
+        <div style={{
+          padding: "14px 18px",
+          borderRadius: 6,
+          border: "1px solid rgba(196,120,106,0.15)",
+          textAlign: "left",
+          marginBottom: phone ? 14 : 0,
+        }}>
+          <div style={{ fontSize: 9, letterSpacing: 4, textTransform: "uppercase", color: "#C9972C", marginBottom: 6 }}>
+            Residence
+          </div>
+          <div style={{ fontSize: 12, color: "var(--text-medium)", lineHeight: 1.9 }}>
+            {houseName}, {place}<br />{area}
+          </div>
         </div>
+
+        {/* Contact (bride only) */}
+        {phone && (
+          <div style={{
+            padding: "12px 18px",
+            borderRadius: 6,
+            border: "1px solid rgba(201,151,44,0.15)",
+            textAlign: "left",
+            display: "flex", alignItems: "center", gap: 10,
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6.6 10.8C7.9 13.4 10 15.4 12.6 16.8L14.6 14.8C14.9 14.5 15.3 14.4 15.6 14.6C16.7 14.9 17.8 15.1 19 15.1C19.6 15.1 20 15.5 20 16.1V19C20 19.6 19.6 20 19 20C10.2 20 3 12.8 3 4C3 3.4 3.4 3 4 3H7C7.6 3 8 3.4 8 4C8 5.2 8.2 6.3 8.5 7.4C8.6 7.8 8.5 8.2 8.2 8.4L6.6 10.8Z"
+                stroke="#C9972C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span style={{ fontSize: 12, color: "var(--text-medium)", letterSpacing: 1 }}>{phone}</span>
+          </div>
+        )}
       </div>
     </motion.div>
   );
 }
 
 export default function CoupleSection() {
-  const sectionRef = useRef(null);
   const titleRef = useRef(null);
   const titleInView = useInView(titleRef, { once: true, margin: "-80px" });
+  const inviteRef = useRef(null);
+  const inviteInView = useInView(inviteRef, { once: true, margin: "-80px" });
 
   return (
     <section
@@ -222,7 +229,7 @@ export default function CoupleSection() {
             color: "#9E5A4E",
             lineHeight: 1.1,
           }}>
-            Two Souls,<br />
+            Two Souls,{" "}
             <em style={{ fontStyle: "italic", color: "#C9972C" }}>One Destiny</em>
           </motion.h2>
           <motion.div variants={staggerItem}>
@@ -230,51 +237,109 @@ export default function CoupleSection() {
           </motion.div>
         </motion.div>
 
-        {/* Person cards + center symbol */}
-        <div className="couple-flex" style={{
+        {/* Invitation message */}
+        <motion.div
+          ref={inviteRef}
+          initial={{ opacity: 0, y: 30 }}
+          animate={inviteInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          style={{
+            textAlign: "center",
+            maxWidth: 680,
+            margin: "0 auto 60px",
+            padding: "36px 40px",
+            background: "#FFFBF7",
+            borderRadius: 8,
+            border: "1px solid rgba(201,151,44,0.2)",
+            boxShadow: "0 4px 40px rgba(196,120,106,0.08)",
+            position: "relative",
+          }}
+        >
+          <OrnamentalCorner position="tl" size={40} />
+          <OrnamentalCorner position="tr" size={40} />
+          <OrnamentalCorner position="bl" size={40} />
+          <OrnamentalCorner position="br" size={40} />
+          <div style={{
+            fontSize: 9, letterSpacing: 5, textTransform: "uppercase",
+            color: "#C9972C", marginBottom: 16, opacity: 0.8,
+          }}>
+            Invitation
+          </div>
+          <p style={{
+            fontFamily: "var(--font-cormorant, serif)",
+            fontSize: "clamp(16px, 2.4vw, 22px)",
+            fontWeight: 400,
+            color: "#7A5C47",
+            lineHeight: 1.8,
+            fontStyle: "italic",
+          }}>
+            &ldquo;{WEDDING.invitation.message}&rdquo;
+          </p>
+          <div style={{
+            marginTop: 16,
+            fontSize: 11, letterSpacing: 3, textTransform: "uppercase",
+            color: "#C9972C", opacity: 0.7,
+          }}>
+            — {WEDDING.bride.parents.father} &amp; {WEDDING.bride.parents.mother}
+          </div>
+        </motion.div>
+
+        {/* Family cards */}
+        <div style={{
           display: "flex",
           gap: 40,
-          alignItems: "stretch",
+          alignItems: "flex-start",
           justifyContent: "center",
           flexWrap: "wrap",
         }}>
-          <PersonCard
-            person={WEDDING.bride}
+          <FamilyCard
+            title="The Bride"
+            name={WEDDING.bride.firstName}
+            father={WEDDING.bride.parents.father}
+            mother={WEDDING.bride.parents.mother}
+            houseName={WEDDING.bride.address.houseName}
+            place={WEDDING.bride.address.place}
+            area={WEDDING.bride.address.area}
+            phone={WEDDING.bride.contact.phone}
             side="bride"
-            parents={WEDDING.parents.bride}
           />
 
-          {/* Center connector */}
-          <div className="couple-connector" style={{
+          {/* Ampersand connector */}
+          <div style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             gap: 12,
             minWidth: 60,
-            padding: "40px 0",
+            padding: "80px 0",
           }}>
             <div style={{ width: 1, flex: 1, background: "linear-gradient(180deg, transparent, #C9972C)" }} />
             <div style={{
               fontFamily: "var(--font-great-vibes, cursive)",
-              fontSize: 48,
+              fontSize: 52,
               color: "#C9972C",
               textShadow: "0 0 20px rgba(201,151,44,0.4)",
+              lineHeight: 1,
             }}>
               &amp;
             </div>
-            {/* Infinity / heart connector */}
             <svg width="50" height="30" viewBox="0 0 50 30" fill="none" aria-hidden="true">
               <path d="M25 15 C25 15 8 0 8 12 C8 20 16 20 25 15 C34 20 42 20 42 12 C42 0 25 15 25 15Z"
-                fill="#C4786A" opacity="0.4" />
+                fill="#C4786A" opacity="0.35" />
             </svg>
             <div style={{ width: 1, flex: 1, background: "linear-gradient(180deg, #C9972C, transparent)" }} />
           </div>
 
-          <PersonCard
-            person={WEDDING.groom}
+          <FamilyCard
+            title="The Groom"
+            name={WEDDING.groom.firstName}
+            father={WEDDING.groom.parents.father}
+            mother={WEDDING.groom.parents.mother}
+            houseName={WEDDING.groom.address.houseName}
+            place={WEDDING.groom.address.place}
+            area={WEDDING.groom.address.area}
             side="groom"
-            parents={WEDDING.parents.groom}
           />
         </div>
       </div>
