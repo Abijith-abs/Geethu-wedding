@@ -42,7 +42,7 @@ export const WEDDING = {
       name: "Mannorkkavu Vanadurgga Auditorium",
       city: "Mynagappally",
       address: "Mannorkkavu Vanadurgga Auditorium, Mynagappally, Kerala",
-      googleMapsUrl: "https://maps.google.com/?q=Mynagappally+Kerala",
+      googleMapsUrl: "https://maps.app.goo.gl/yeAMY65xcQtDJGGn9",
     },
   },
   invitation: {
